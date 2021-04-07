@@ -1,34 +1,25 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:diagram_editor_apps/simple_demo/custom_data.dart';
+import 'package:diagram_editor_apps/simple_demo/custom_component_data.dart';
 import 'package:diagram_editor_apps/simple_demo/edit_dialog.dart';
+import 'package:diagram_editor_apps/simple_demo/widget/component/base_component_body.dart';
 import 'package:flutter/material.dart';
 
-class CrystalWidgetBody extends StatelessWidget {
+class CrystalBody extends StatelessWidget {
   final ComponentData componentData;
 
-  const CrystalWidgetBody({
+  const CrystalBody({
     Key key,
     this.componentData,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final CustomData customData = componentData.data;
-
-    return GestureDetector(
-      onLongPress: () {
-        showEditComponentDialog(context, componentData);
-      },
-      child: CustomPaint(
-        painter: CrystalPainter(
-          color: customData.color,
-          borderColor:
-              customData.isHighlightVisible ? Colors.teal : Colors.grey[300],
-          borderWidth: 2.0,
-        ),
-        child: Center(
-          child: Text(customData.text),
-        ),
+    return BaseComponentBody(
+      componentData: componentData,
+      componentPainter: CrystalPainter(
+        color: componentData.data.color,
+        borderColor: componentData.data.borderColor,
+        borderWidth: 2.0,
       ),
     );
   }
@@ -53,12 +44,7 @@ class CrystalPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
     componentSize = size;
 
-    Path path = Path();
-    path.moveTo(0, componentSize.height / 2);
-    path.lineTo(componentSize.width / 2, 0);
-    path.lineTo(componentSize.width, componentSize.height / 2);
-    path.lineTo(componentSize.width / 2, componentSize.height);
-    path.close();
+    Path path = componentPath();
 
     canvas.drawPath(path, paint);
 
@@ -75,12 +61,17 @@ class CrystalPainter extends CustomPainter {
 
   @override
   bool hitTest(Offset position) {
+    Path path = componentPath();
+    return path.contains(position);
+  }
+
+  Path componentPath() {
     Path path = Path();
     path.moveTo(0, componentSize.height / 2);
     path.lineTo(componentSize.width / 2, 0);
     path.lineTo(componentSize.width, componentSize.height / 2);
     path.lineTo(componentSize.width / 2, componentSize.height);
     path.close();
-    return path.contains(position);
+    return path;
   }
 }

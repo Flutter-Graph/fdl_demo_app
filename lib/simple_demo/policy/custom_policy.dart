@@ -1,9 +1,23 @@
 import 'package:diagram_editor/diagram_editor.dart';
 
 mixin CustomStatePolicy implements PolicySet {
-  List<String> bodies = ['rect', 'oval', 'crystal'];
+  List<String> bodies = [
+    'rect',
+    'round_rect',
+    'oval',
+    'crystal',
+    'rhomboid',
+    'bean',
+    'bean_left',
+    'bean_right',
+    'document',
+    'hexagon_horizontal',
+    'hexagon_vertical',
+    'bend_left',
+    'bend_right',
+    'no_corner_rect',
+  ];
 
-  int custom = 0;
   String selectedComponentId;
 
   List<String> multipleSelected = [];
@@ -27,12 +41,10 @@ mixin CustomStatePolicy implements PolicySet {
 
 mixin CustomBehaviourPolicy implements PolicySet, CustomStatePolicy {
   removeAll() {
-    print('custom butt: ${custom++}');
     canvasWriter.model.removeAllComponents();
   }
 
   resetView() {
-    print('custom butt: ${custom++}');
     canvasWriter.state.resetCanvasView();
   }
 }

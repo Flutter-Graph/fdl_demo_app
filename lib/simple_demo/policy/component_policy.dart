@@ -1,4 +1,5 @@
 import 'package:diagram_editor/diagram_editor.dart';
+import 'package:diagram_editor_apps/simple_demo/custom_link_data.dart';
 import 'package:diagram_editor_apps/simple_demo/policy/custom_policy.dart';
 import 'package:flutter/material.dart';
 
@@ -45,14 +46,20 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomStatePolicy {
       return false;
     }
 
-    canvasWriter.model.connectTwoComponents(
+    String linkId = canvasWriter.model.connectTwoComponents(
       sourceComponentId: sourceComponentId,
       targetComponentId: targetComponentId,
       linkStyle: LinkStyle(
         arrowType: ArrowType.pointedArrow,
         width: 1.5,
       ),
+      data: MyLinkData(),
     );
+
+    var link = canvasReader.model.getLink(linkId);
+    link.data.startLabel = linkId.substring(0, 4);
+    link.data.endLabel = linkId.substring(0, 4);
+
     return true;
   }
 }
