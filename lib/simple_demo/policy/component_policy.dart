@@ -1,5 +1,5 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:diagram_editor_apps/simple_demo/custom_link_data.dart';
+import 'package:diagram_editor_apps/simple_demo/data/custom_link_data.dart';
 import 'package:diagram_editor_apps/simple_demo/policy/custom_policy.dart';
 import 'package:flutter/material.dart';
 
@@ -16,13 +16,19 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomStatePolicy {
     } else {
       hideAllHighlights();
 
-      bool connected = connectComponents(selectedComponentId, componentId);
-      if (connected) {
-        print('connected');
-        selectedComponentId = null;
+      if (isReadyToConnect) {
+        isReadyToConnect = false;
+        bool connected = connectComponents(selectedComponentId, componentId);
+        if (connected) {
+          print('connected');
+          selectedComponentId = null;
+        } else {
+          print('not connected');
+          selectedComponentId = componentId;
+          highlightComponent(componentId);
+        }
       } else {
         selectedComponentId = componentId;
-
         highlightComponent(componentId);
       }
     }
@@ -33,7 +39,7 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomStatePolicy {
   onComponentScaleStart(componentId, details) {
     lastFocalPoint = details.localFocalPoint;
 
-    canvasWriter.model.hideAllLinkDeleteIcons();
+    canvasWriter.model.hideAllTapLinkWidgets();
 
     if (isMultipleSelectionOn) {
       addComponentToMultipleSelection(componentId);
@@ -69,23 +75,21 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomStatePolicy {
       return false;
     }
     if (canvasReader.model.getComponent(sourceComponentId).connections.any(
-        (connection) => connection.otherComponentId == targetComponentId)) {
+        (connection) =>
+            (connection is ConnectionOut) &&
+            (connection.otherComponentId == targetComponentId))) {
       return false;
     }
 
-    String linkId = canvasWriter.model.connectTwoComponents(
+    canvasWriter.model.connectTwoComponents(
       sourceComponentId: sourceComponentId,
       targetComponentId: targetComponentId,
       linkStyle: LinkStyle(
         arrowType: ArrowType.pointedArrow,
-        width: 1.5,
+        lineWidth: 1.5,
       ),
       data: MyLinkData(),
     );
-
-    var link = canvasReader.model.getLink(linkId);
-    link.data.startLabel = linkId.substring(0, 4);
-    link.data.endLabel = linkId.substring(0, 4);
 
     return true;
   }

@@ -24,7 +24,7 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomStatePolicy {
     }
 
     canvasWriter.model.hideAllLinkJoints();
-    canvasWriter.model.hideAllLinkDeleteIcons();
+    canvasWriter.model.hideAllTapLinkWidgets();
   }
 
   Offset lastFocalPoint;
@@ -32,7 +32,7 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomStatePolicy {
   onComponentScaleStart(componentId, details) {
     lastFocalPoint = details.localFocalPoint;
 
-    canvasWriter.model.hideAllLinkDeleteIcons();
+    canvasWriter.model.hideAllTapLinkWidgets();
   }
 
   onComponentScaleUpdate(componentId, details) {
@@ -62,7 +62,7 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomStatePolicy {
       targetComponentId: targetComponentId,
       linkStyle: LinkStyle(
         arrowType: ArrowType.pointedArrow,
-        width: 1.5,
+        lineWidth: 1.5,
       ),
     );
     return true;

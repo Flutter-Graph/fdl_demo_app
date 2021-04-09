@@ -1,5 +1,5 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:diagram_editor_apps/simple_demo/custom_component_data.dart';
+import 'package:diagram_editor_apps/simple_demo/data/custom_component_data.dart';
 import 'package:flutter/material.dart';
 
 mixin CustomStatePolicy implements PolicySet {
@@ -27,9 +27,13 @@ mixin CustomStatePolicy implements PolicySet {
   bool isMultipleSelectionOn = false;
   List<String> multipleSelected = [];
 
+  Offset deleteLinkPos = Offset.zero;
+
+  bool isReadyToConnect = false;
+
   hideAllHighlights() {
     canvasWriter.model.hideAllLinkJoints();
-    canvasWriter.model.hideAllLinkDeleteIcons();
+    canvasWriter.model.hideAllTapLinkWidgets();
     canvasReader.model.getAllComponents().values.forEach((component) {
       if (component.data.isHighlightVisible) {
         component.data.hideHighlight();
@@ -50,6 +54,7 @@ mixin CustomStatePolicy implements PolicySet {
 
   turnOnMultipleSelection() {
     isMultipleSelectionOn = true;
+    isReadyToConnect = false;
 
     if (selectedComponentId != null) {
       addComponentToMultipleSelection(selectedComponentId);
