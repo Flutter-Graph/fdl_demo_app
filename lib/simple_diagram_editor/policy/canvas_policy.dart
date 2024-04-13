@@ -1,5 +1,5 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/policy/custom_policy.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/policy/custom_policy.dart';
 
 mixin MyCanvasPolicy implements CanvasPolicy, CustomStatePolicy {
   @override

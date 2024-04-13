@@ -1,4 +1,4 @@
-import 'package:fdl_demo_app_2/ports_example/policy/policy_set.dart';
+import 'package:diagram_editor_apps/ports_example/policy/policy_set.dart';
 import 'package:flutter/material.dart';
 
 class PortSwitch extends StatefulWidget {

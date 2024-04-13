@@ -1,6 +1,6 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:fdl_demo_app_2/grid_example/policy/policy_set.dart';
-import 'package:fdl_demo_app_2/grid_example/widget/snap_switch.dart';
+import 'package:diagram_editor_apps/grid_example/policy/policy_set.dart';
+import 'package:diagram_editor_apps/grid_example/widget/snap_switch.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(GridDiagramEditor());

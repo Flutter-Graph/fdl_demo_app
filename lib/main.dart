@@ -1,9 +1,9 @@
-import 'package:fdl_demo_app_2/complex_example/complex_editor.dart';
-import 'package:fdl_demo_app_2/grid_example/grid_editor.dart';
-import 'package:fdl_demo_app_2/hierarchical_example/hierarchical_editor.dart';
-import 'package:fdl_demo_app_2/ports_example/ports_editor.dart';
-import 'package:fdl_demo_app_2/pub_example/pub_editor.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/widget/editor.dart';
+import 'package:diagram_editor_apps/complex_example/complex_editor.dart';
+import 'package:diagram_editor_apps/grid_example/grid_editor.dart';
+import 'package:diagram_editor_apps/hierarchical_example/hierarchical_editor.dart';
+import 'package:diagram_editor_apps/ports_example/ports_editor.dart';
+import 'package:diagram_editor_apps/pub_example/pub_editor.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/widget/editor.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 

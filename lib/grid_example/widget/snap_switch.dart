@@ -1,4 +1,4 @@
-import 'package:fdl_demo_app_2/grid_example/policy/policy_set.dart';
+import 'package:diagram_editor_apps/grid_example/policy/policy_set.dart';
 import 'package:flutter/material.dart';
 
 class SpanSwitch extends StatefulWidget {

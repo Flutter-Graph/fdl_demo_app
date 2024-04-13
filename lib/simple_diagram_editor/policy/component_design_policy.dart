@@ -1,18 +1,18 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/widget/component/bean_component.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/widget/component/bean_left_component.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/widget/component/bean_right_component.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/widget/component/bend_left_component.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/widget/component/bend_right_component.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/widget/component/crystal_component.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/widget/component/document_component.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/widget/component/hexagon_horizontal_component.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/widget/component/hexagon_vertical_component.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/widget/component/no_corner_rect_component.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/widget/component/oval_component.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/widget/component/rect_component.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/widget/component/rhomboid_component.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/widget/component/round_rect_component.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/widget/component/bean_component.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/widget/component/bean_left_component.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/widget/component/bean_right_component.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/widget/component/bend_left_component.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/widget/component/bend_right_component.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/widget/component/crystal_component.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/widget/component/document_component.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/widget/component/hexagon_horizontal_component.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/widget/component/hexagon_vertical_component.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/widget/component/no_corner_rect_component.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/widget/component/oval_component.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/widget/component/rect_component.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/widget/component/rhomboid_component.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/widget/component/round_rect_component.dart';
 import 'package:flutter/material.dart';
 
 mixin MyComponentDesignPolicy implements ComponentDesignPolicy {

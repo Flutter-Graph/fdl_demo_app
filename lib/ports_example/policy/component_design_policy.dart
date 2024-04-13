@@ -1,6 +1,6 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:fdl_demo_app_2/ports_example/widget/port_component.dart';
-import 'package:fdl_demo_app_2/ports_example/widget/rect_component.dart';
+import 'package:diagram_editor_apps/ports_example/widget/port_component.dart';
+import 'package:diagram_editor_apps/ports_example/widget/rect_component.dart';
 import 'package:flutter/material.dart';
 
 mixin MyComponentDesignPolicy implements ComponentDesignPolicy {

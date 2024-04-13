@@ -1,8 +1,8 @@
 import 'dart:math' as math;
 
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:fdl_demo_app_2/complex_example/components/rainbow.dart';
-import 'package:fdl_demo_app_2/complex_example/components/random.dart';
+import 'package:diagram_editor_apps/complex_example/components/rainbow.dart';
+import 'package:diagram_editor_apps/complex_example/components/random.dart';
 import 'package:flutter/material.dart';
 
 class ComplexDiagramEditor extends StatefulWidget {

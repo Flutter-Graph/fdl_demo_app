@@ -1,5 +1,5 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:fdl_demo_app_2/hierarchical_example/policy/custom_policy.dart';
+import 'package:diagram_editor_apps/hierarchical_example/policy/custom_policy.dart';
 import 'package:flutter/material.dart';
 
 mixin MyComponentPolicy implements ComponentPolicy, CustomPolicy {

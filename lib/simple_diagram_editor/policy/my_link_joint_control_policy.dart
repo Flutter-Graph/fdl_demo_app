@@ -1,5 +1,5 @@
 import 'package:diagram_editor/src/abstraction_layer/policy/base/link_joints_policy.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/policy/custom_policy.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/policy/custom_policy.dart';
 import 'package:flutter/material.dart';
 
 mixin MyLinkJointControlPolicy implements LinkJointPolicy, CustomStatePolicy {

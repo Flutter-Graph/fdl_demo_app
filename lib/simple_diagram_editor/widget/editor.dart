@@ -1,8 +1,8 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/policy/minimap_policy.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/policy/my_policy_set.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/widget/menu.dart';
-import 'package:fdl_demo_app_2/simple_diagram_editor/widget/option_icon.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/policy/minimap_policy.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/policy/my_policy_set.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/widget/menu.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/widget/option_icon.dart';
 import 'package:flutter/material.dart';
 
 class SimpleDemoEditor extends StatefulWidget {
