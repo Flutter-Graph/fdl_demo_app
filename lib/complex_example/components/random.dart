@@ -7,9 +7,8 @@ class RandomComponent extends StatelessWidget {
   final ComponentData componentData;
 
   const RandomComponent({
-    Key key,
-    this.componentData,
-  }) : super(key: key);
+    required this.componentData,
+  });
 
   Path componentPath() {
     Path path = Path();
@@ -36,9 +35,7 @@ class RandomComponent extends StatelessWidget {
       child: CustomPaint(
         painter: RandomPainter(
           color: Colors.grey,
-          borderColor: componentData.data.isHighlightVisible
-              ? Colors.pink
-              : Colors.black,
+          borderColor: componentData.data.isHighlightVisible ? Colors.pink : Colors.black,
           borderWidth: 2,
           path: componentPath(),
           path2: componentPath(),
@@ -59,8 +56,8 @@ class RandomPainter extends CustomPainter {
     this.color = Colors.grey,
     this.borderColor = Colors.black,
     this.borderWidth = 1.0,
-    this.path,
-    this.path2,
+    required this.path,
+    required this.path2,
   });
 
   @override

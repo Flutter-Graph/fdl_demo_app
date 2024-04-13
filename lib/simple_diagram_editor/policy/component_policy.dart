@@ -1,6 +1,6 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:diagram_editor_apps/simple_diagram_editor/data/custom_link_data.dart';
-import 'package:diagram_editor_apps/simple_diagram_editor/policy/custom_policy.dart';
+import 'package:fdl_demo_app_2/simple_diagram_editor/data/custom_link_data.dart';
+import 'package:fdl_demo_app_2/simple_diagram_editor/policy/custom_policy.dart';
 import 'package:flutter/material.dart';
 
 mixin MyComponentPolicy implements ComponentPolicy, CustomStatePolicy {
@@ -35,7 +35,7 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomStatePolicy {
     }
   }
 
-  Offset lastFocalPoint;
+  late Offset lastFocalPoint;
 
   @override
   onComponentScaleStart(componentId, details) {
@@ -52,14 +52,13 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomStatePolicy {
   onComponentScaleUpdate(componentId, details) {
     Offset positionDelta = details.localFocalPoint - lastFocalPoint;
     if (isMultipleSelectionOn) {
-      multipleSelected.forEach((compId) {
-        var cmp = canvasReader.model.getComponent(compId);
-        canvasWriter.model.moveComponent(compId, positionDelta);
+      multipleSelected.forEach((componentId) {
+        if (componentId == null) return;
+        var cmp = canvasReader.model.getComponent(componentId);
+        canvasWriter.model.moveComponent(componentId, positionDelta);
         cmp.connections.forEach((connection) {
-          if (connection is ConnectionOut &&
-              multipleSelected.contains(connection.otherComponentId)) {
-            canvasWriter.model.moveAllLinkMiddlePoints(
-                connection.connectionId, positionDelta);
+          if (connection is ConnectionOut && multipleSelected.contains(connection.otherComponentId)) {
+            canvasWriter.model.moveAllLinkMiddlePoints(connection.connectionId, positionDelta);
           }
         });
       });
@@ -69,17 +68,17 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomStatePolicy {
     lastFocalPoint = details.localFocalPoint;
   }
 
-  bool connectComponents(String sourceComponentId, String targetComponentId) {
+  bool connectComponents(String? sourceComponentId, String targetComponentId) {
     if (sourceComponentId == null) {
       return false;
     }
     if (sourceComponentId == targetComponentId) {
       return false;
     }
-    if (canvasReader.model.getComponent(sourceComponentId).connections.any(
-        (connection) =>
-            (connection is ConnectionOut) &&
-            (connection.otherComponentId == targetComponentId))) {
+    if (canvasReader.model
+        .getComponent(sourceComponentId)
+        .connections
+        .any((connection) => (connection is ConnectionOut) && (connection.otherComponentId == targetComponentId))) {
       return false;
     }
 

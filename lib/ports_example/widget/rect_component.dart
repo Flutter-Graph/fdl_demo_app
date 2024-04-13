@@ -1,14 +1,13 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:diagram_editor_apps/ports_example/widget/port_component.dart';
+import 'package:fdl_demo_app_2/ports_example/widget/port_component.dart';
 import 'package:flutter/material.dart';
 
 class RectComponent extends StatelessWidget {
   final ComponentData componentData;
 
   const RectComponent({
-    Key key,
-    @required this.componentData,
-  }) : super(key: key);
+    required this.componentData,
+  });
 
   @override
   Widget build(BuildContext context) {

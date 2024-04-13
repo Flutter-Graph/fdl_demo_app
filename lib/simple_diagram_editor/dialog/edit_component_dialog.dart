@@ -1,10 +1,9 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:diagram_editor_apps/simple_diagram_editor/data/custom_component_data.dart';
-import 'package:diagram_editor_apps/simple_diagram_editor/dialog/pick_color_dialog.dart';
+import 'package:fdl_demo_app_2/simple_diagram_editor/data/custom_component_data.dart';
+import 'package:fdl_demo_app_2/simple_diagram_editor/dialog/pick_color_dialog.dart';
 import 'package:flutter/material.dart';
 
-void showEditComponentDialog(
-    BuildContext context, ComponentData componentData) {
+void showEditComponentDialog(BuildContext context, ComponentData componentData) {
   MyComponentData customData = componentData.data;
 
   Color color = customData.color;
@@ -15,7 +14,7 @@ void showEditComponentDialog(
   double minBorderWidth = 0;
   double borderWidthDelta = 0.1;
 
-  final textController = TextEditingController(text: customData.text ?? '');
+  final textController = TextEditingController(text: customData.text);
 
   Alignment textAlignmentDropdown = customData.textAlignment;
   var alignmentValues = [
@@ -30,8 +29,7 @@ void showEditComponentDialog(
     Alignment.bottomRight,
   ];
   double textSizeDropdown = customData.textSize;
-  var textSizeValues =
-      List<double>.generate(20, (int index) => index * 2 + 10.0);
+  var textSizeValues = List<double>.generate(20, (int index) => index * 2 + 10.0);
 
   showDialog(
     barrierDismissible: false,
@@ -57,10 +55,8 @@ void showEditComponentDialog(
               Container(
                 child: DropdownButton<Alignment>(
                   value: textAlignmentDropdown,
-                  onChanged: (Alignment newValue) {
-                    setState(() {
-                      textAlignmentDropdown = newValue;
-                    });
+                  onChanged: (Alignment? newValue) {
+                    if (newValue != null) setState(() => textAlignmentDropdown = newValue);
                   },
                   items: alignmentValues.map((Alignment alignment) {
                     return DropdownMenuItem<Alignment>(
@@ -78,10 +74,8 @@ void showEditComponentDialog(
                   Container(
                     child: DropdownButton<double>(
                       value: textSizeDropdown,
-                      onChanged: (double newValue) {
-                        setState(() {
-                          textSizeDropdown = newValue;
-                        });
+                      onChanged: (double? newValue) {
+                        if (newValue != null) setState(() => textSizeDropdown = newValue);
                       },
                       items: textSizeValues.map((double textSize) {
                         return DropdownMenuItem<double>(
@@ -100,8 +94,7 @@ void showEditComponentDialog(
                   SizedBox(width: 16),
                   GestureDetector(
                     onTap: () async {
-                      var pickedColor = showPickColorDialog(
-                          context, color, 'Pick a component color');
+                      var pickedColor = showPickColorDialog(context, color, 'Pick a component color');
                       color = await pickedColor;
                       setState(() {});
                     },
@@ -124,8 +117,7 @@ void showEditComponentDialog(
                   SizedBox(width: 16),
                   GestureDetector(
                     onTap: () async {
-                      var pickedColor = showPickColorDialog(context,
-                          borderColor, 'Pick a component border color');
+                      var pickedColor = showPickColorDialog(context, borderColor, 'Pick a component border color');
                       borderColor = await pickedColor;
                       setState(() {});
                     },
@@ -170,14 +162,12 @@ void showEditComponentDialog(
                       ),
                       Column(
                         children: [
-                          Text(
-                              '${double.parse(borderWidthPick.toStringAsFixed(1))}'),
+                          Text('${double.parse(borderWidthPick.toStringAsFixed(1))}'),
                           Slider(
                             value: borderWidthPick,
                             onChanged: (double newValue) {
                               setState(() {
-                                borderWidthPick =
-                                    double.parse(newValue.toStringAsFixed(1));
+                                borderWidthPick = double.parse(newValue.toStringAsFixed(1));
                               });
                             },
                             min: minBorderWidth,

@@ -1,11 +1,11 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:diagram_editor_apps/hierarchical_example/component_data.dart';
+import 'package:fdl_demo_app_2/hierarchical_example/component_data.dart';
 import 'package:flutter/material.dart';
 
 mixin MyInitPolicy implements InitPolicy {
   @override
   initializeDiagramEditor() {
-    canvasWriter.state.setCanvasColor(Colors.grey[300]);
+    canvasWriter.state.setCanvasColor(Color(0xFFE0E0E0));
 
     var cd1 = getSmallComponentData(Offset(220, 100));
     var cd2 = getSmallComponentData(Offset(220, 180));

@@ -1,5 +1,5 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:diagram_editor_apps/ports_example/policy/custom_policy.dart';
+import 'package:fdl_demo_app_2/ports_example/policy/custom_policy.dart';
 import 'package:flutter/material.dart';
 
 mixin MyCanvasPolicy implements CanvasPolicy, CustomPolicy {
@@ -8,8 +8,7 @@ mixin MyCanvasPolicy implements CanvasPolicy, CustomPolicy {
     canvasWriter.model.hideAllLinkJoints();
 
     if (selectedPortId == null) {
-      addComponentDataWithPorts(
-          canvasReader.state.fromCanvasCoordinates(details.localPosition));
+      addComponentDataWithPorts(canvasReader.state.fromCanvasCoordinates(details.localPosition));
     }
     deselectAllPorts();
   }

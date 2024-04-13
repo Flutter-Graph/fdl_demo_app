@@ -1,18 +1,14 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:diagram_editor_apps/simple_diagram_editor/dialog/edit_component_dialog.dart';
-import 'package:diagram_editor_apps/simple_diagram_editor/policy/custom_policy.dart';
-import 'package:diagram_editor_apps/simple_diagram_editor/widget/option_icon.dart';
+import 'package:fdl_demo_app_2/simple_diagram_editor/dialog/edit_component_dialog.dart';
+import 'package:fdl_demo_app_2/simple_diagram_editor/policy/custom_policy.dart';
+import 'package:fdl_demo_app_2/simple_diagram_editor/widget/option_icon.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
-mixin MyComponentWidgetsPolicy
-    implements ComponentWidgetsPolicy, CustomStatePolicy {
+mixin MyComponentWidgetsPolicy implements ComponentWidgetsPolicy, CustomStatePolicy {
   @override
-  Widget showCustomWidgetWithComponentDataOver(
-      BuildContext context, ComponentData componentData) {
+  Widget showCustomWidgetWithComponentDataOver(BuildContext context, ComponentData componentData) {
     bool isJunction = componentData.type == 'junction';
-    bool showOptions =
-        (!isMultipleSelectionOn) && (!isReadyToConnect) && !isJunction;
+    bool showOptions = (!isMultipleSelectionOn) && (!isReadyToConnect) && !isJunction;
 
     return Visibility(
       visible: componentData.data.isHighlightVisible,
@@ -20,8 +16,7 @@ mixin MyComponentWidgetsPolicy
         children: [
           if (showOptions) componentTopOptions(componentData, context),
           if (showOptions) componentBottomOptions(componentData),
-          highlight(
-              componentData, isMultipleSelectionOn ? Colors.cyan : Colors.red),
+          highlight(componentData, isMultipleSelectionOn ? Colors.cyan : Colors.red),
           if (showOptions) resizeCorner(componentData),
           if (isJunction && !isReadyToConnect) junctionOptions(componentData),
         ],
@@ -30,8 +25,7 @@ mixin MyComponentWidgetsPolicy
   }
 
   Widget componentTopOptions(ComponentData componentData, context) {
-    Offset componentPosition =
-        canvasReader.state.toCanvasCoordinates(componentData.position);
+    Offset componentPosition = canvasReader.state.toCanvasCoordinates(componentData.position);
     return Positioned(
       left: componentPosition.dx - 24,
       top: componentPosition.dy - 48,
@@ -75,8 +69,7 @@ mixin MyComponentWidgetsPolicy
             iconData: Icons.link_off,
             tooltip: 'remove links',
             size: 40,
-            onPressed: () =>
-                canvasWriter.model.removeComponentConnections(componentData.id),
+            onPressed: () => canvasWriter.model.removeComponentConnections(componentData.id),
           ),
         ],
       ),
@@ -84,8 +77,8 @@ mixin MyComponentWidgetsPolicy
   }
 
   Widget componentBottomOptions(ComponentData componentData) {
-    Offset componentBottomLeftCorner = canvasReader.state.toCanvasCoordinates(
-        componentData.position + componentData.size.bottomLeft(Offset.zero));
+    Offset componentBottomLeftCorner =
+        canvasReader.state.toCanvasCoordinates(componentData.position + componentData.size.bottomLeft(Offset.zero));
     return Positioned(
       left: componentBottomLeftCorner.dx - 16,
       top: componentBottomLeftCorner.dy + 8,
@@ -97,8 +90,7 @@ mixin MyComponentWidgetsPolicy
             tooltip: 'bring to front',
             size: 24,
             shape: BoxShape.rectangle,
-            onPressed: () =>
-                canvasWriter.model.moveComponentToTheFront(componentData.id),
+            onPressed: () => canvasWriter.model.moveComponentToTheFront(componentData.id),
           ),
           SizedBox(width: 12),
           OptionIcon(
@@ -107,8 +99,7 @@ mixin MyComponentWidgetsPolicy
             tooltip: 'move to back',
             size: 24,
             shape: BoxShape.rectangle,
-            onPressed: () =>
-                canvasWriter.model.moveComponentToTheBack(componentData.id),
+            onPressed: () => canvasWriter.model.moveComponentToTheBack(componentData.id),
           ),
           SizedBox(width: 40),
           OptionIcon(
@@ -128,12 +119,8 @@ mixin MyComponentWidgetsPolicy
 
   Widget highlight(ComponentData componentData, Color color) {
     return Positioned(
-      left: canvasReader.state
-          .toCanvasCoordinates(componentData.position - Offset(2, 2))
-          .dx,
-      top: canvasReader.state
-          .toCanvasCoordinates(componentData.position - Offset(2, 2))
-          .dy,
+      left: canvasReader.state.toCanvasCoordinates(componentData.position - Offset(2, 2)).dx,
+      top: canvasReader.state.toCanvasCoordinates(componentData.position - Offset(2, 2)).dy,
       child: CustomPaint(
         painter: ComponentHighlightPainter(
           width: (componentData.size.width + 4) * canvasReader.state.scale,
@@ -145,15 +132,14 @@ mixin MyComponentWidgetsPolicy
   }
 
   resizeCorner(ComponentData componentData) {
-    Offset componentBottomRightCorner = canvasReader.state.toCanvasCoordinates(
-        componentData.position + componentData.size.bottomRight(Offset.zero));
+    Offset componentBottomRightCorner =
+        canvasReader.state.toCanvasCoordinates(componentData.position + componentData.size.bottomRight(Offset.zero));
     return Positioned(
       left: componentBottomRightCorner.dx - 12,
       top: componentBottomRightCorner.dy - 12,
       child: GestureDetector(
         onPanUpdate: (details) {
-          canvasWriter.model.resizeComponent(
-              componentData.id, details.delta / canvasReader.state.scale);
+          canvasWriter.model.resizeComponent(componentData.id, details.delta / canvasReader.state.scale);
           canvasWriter.model.updateComponentLinks(componentData.id);
         },
         child: MouseRegion(
@@ -168,7 +154,7 @@ mixin MyComponentWidgetsPolicy
                 height: 8,
                 decoration: BoxDecoration(
                   color: Colors.black,
-                  border: Border.all(color: Colors.grey[200]),
+                  border: Border.all(color: Color(0xFFEEEEEE)),
                 ),
               ),
             ),
@@ -179,8 +165,7 @@ mixin MyComponentWidgetsPolicy
   }
 
   Widget junctionOptions(ComponentData componentData) {
-    Offset componentPosition =
-        canvasReader.state.toCanvasCoordinates(componentData.position);
+    Offset componentPosition = canvasReader.state.toCanvasCoordinates(componentData.position);
     return Positioned(
       left: componentPosition.dx - 24,
       top: componentPosition.dy - 48,

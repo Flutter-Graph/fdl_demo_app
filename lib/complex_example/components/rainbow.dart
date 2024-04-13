@@ -5,7 +5,10 @@ class RainbowItem extends StatelessWidget {
   final Color color;
   final double width;
 
-  const RainbowItem({Key key, this.color, this.width}) : super(key: key);
+  const RainbowItem({
+    required this.color,
+    required this.width,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +23,8 @@ class ComplexRainbowComponent extends StatelessWidget {
   final ComponentData componentData;
 
   const ComplexRainbowComponent({
-    Key key,
-    this.componentData,
-  }) : super(key: key);
+    required this.componentData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +34,7 @@ class ComplexRainbowComponent extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           width: 4,
-          color: componentData.data.isHighlightVisible
-              ? Colors.pink
-              : Colors.black,
+          color: componentData.data.isHighlightVisible ? Colors.pink : Colors.black,
         ),
       ),
       child: Column(

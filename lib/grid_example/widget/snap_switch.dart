@@ -1,10 +1,12 @@
-import 'package:diagram_editor_apps/grid_example/policy/policy_set.dart';
+import 'package:fdl_demo_app_2/grid_example/policy/policy_set.dart';
 import 'package:flutter/material.dart';
 
 class SpanSwitch extends StatefulWidget {
   final MyPolicySet policySet;
 
-  const SpanSwitch({Key key, this.policySet}) : super(key: key);
+  const SpanSwitch({
+    required this.policySet,
+  });
 
   @override
   _SpanSwitchState createState() => _SpanSwitchState();
@@ -26,9 +28,7 @@ class _SpanSwitchState extends State<SpanSwitch> {
           height: 32,
           color: Colors.amber,
           child: Center(
-              child: Text(widget.policySet.isSnappingEnabled
-                  ? 'grid snapping ENABLED'
-                  : 'grid snapping DISABLED')),
+              child: Text(widget.policySet.isSnappingEnabled ? 'grid snapping ENABLED' : 'grid snapping DISABLED')),
         ),
       ),
     );

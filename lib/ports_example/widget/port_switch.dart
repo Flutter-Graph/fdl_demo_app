@@ -1,10 +1,10 @@
-import 'package:diagram_editor_apps/ports_example/policy/policy_set.dart';
+import 'package:fdl_demo_app_2/ports_example/policy/policy_set.dart';
 import 'package:flutter/material.dart';
 
 class PortSwitch extends StatefulWidget {
   final MyPolicySet policySet;
 
-  const PortSwitch({Key key, this.policySet}) : super(key: key);
+  const PortSwitch({required this.policySet});
 
   @override
   _PortSwitchState createState() => _PortSwitchState();
@@ -25,10 +25,7 @@ class _PortSwitchState extends State<PortSwitch> {
           width: 96,
           height: 32,
           color: Colors.amber,
-          child: Center(
-              child: Text(widget.policySet.arePortsVisible
-                  ? 'hide ports'
-                  : 'show ports')),
+          child: Center(child: Text(widget.policySet.arePortsVisible ? 'hide ports' : 'show ports')),
         ),
       ),
     );

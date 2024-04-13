@@ -1,8 +1,8 @@
 import 'dart:math' as math;
 
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:diagram_editor_apps/hierarchical_example/component_data.dart';
-import 'package:diagram_editor_apps/hierarchical_example/policy/custom_policy.dart';
+import 'package:fdl_demo_app_2/hierarchical_example/component_data.dart';
+import 'package:fdl_demo_app_2/hierarchical_example/policy/custom_policy.dart';
 import 'package:flutter/material.dart';
 
 mixin MyCanvasPolicy implements CanvasPolicy, CustomPolicy {
@@ -27,8 +27,7 @@ mixin MyCanvasPolicy implements CanvasPolicy, CustomPolicy {
           ComponentData(
             size: sizes[math.Random().nextInt(sizes.length)],
             minSize: Size(72, 48),
-            position:
-                canvasReader.state.fromCanvasCoordinates(details.localPosition),
+            position: canvasReader.state.fromCanvasCoordinates(details.localPosition),
             data: MyComponentData(),
           ),
         );

@@ -1,9 +1,9 @@
-import 'package:diagram_editor_apps/complex_example/complex_editor.dart';
-import 'package:diagram_editor_apps/grid_example/grid_editor.dart';
-import 'package:diagram_editor_apps/hierarchical_example/hierarchical_editor.dart';
-import 'package:diagram_editor_apps/ports_example/ports_editor.dart';
-import 'package:diagram_editor_apps/pub_example/pub_editor.dart';
-import 'package:diagram_editor_apps/simple_diagram_editor/widget/editor.dart';
+import 'package:fdl_demo_app_2/complex_example/complex_editor.dart';
+import 'package:fdl_demo_app_2/grid_example/grid_editor.dart';
+import 'package:fdl_demo_app_2/hierarchical_example/hierarchical_editor.dart';
+import 'package:fdl_demo_app_2/ports_example/ports_editor.dart';
+import 'package:fdl_demo_app_2/pub_example/pub_editor.dart';
+import 'package:fdl_demo_app_2/simple_diagram_editor/widget/editor.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -31,11 +31,11 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeScreen extends StatelessWidget {
-  _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
+  Future<void> _launchUrl(String urlString) async {
+    final url = Uri.tryParse(urlString);
+    if (url == null) return;
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
     }
   }
 
@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 child: Text('library GitHub'),
                 onPressed: () {
-                  _launchURL('https://github.com/Arokip/fdl');
+                  _launchUrl('https://github.com/Arokip/fdl');
                 },
               ),
               SizedBox(height: 8),
@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 child: Text('library'),
                 onPressed: () {
-                  _launchURL('https://pub.dev/packages/diagram_editor');
+                  _launchUrl('https://pub.dev/packages/diagram_editor');
                 },
               ),
               SizedBox(height: 40),
@@ -139,7 +139,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 child: Text('ETL'),
                 onPressed: () {
-                  _launchURL('https://arokip.github.io/etl_diagram_editor');
+                  _launchUrl('https://arokip.github.io/etl_diagram_editor');
                 },
               ),
             ],

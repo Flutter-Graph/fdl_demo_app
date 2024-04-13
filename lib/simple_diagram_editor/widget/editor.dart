@@ -1,8 +1,8 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:diagram_editor_apps/simple_diagram_editor/policy/minimap_policy.dart';
-import 'package:diagram_editor_apps/simple_diagram_editor/policy/my_policy_set.dart';
-import 'package:diagram_editor_apps/simple_diagram_editor/widget/menu.dart';
-import 'package:diagram_editor_apps/simple_diagram_editor/widget/option_icon.dart';
+import 'package:fdl_demo_app_2/simple_diagram_editor/policy/minimap_policy.dart';
+import 'package:fdl_demo_app_2/simple_diagram_editor/policy/my_policy_set.dart';
+import 'package:fdl_demo_app_2/simple_diagram_editor/widget/menu.dart';
+import 'package:fdl_demo_app_2/simple_diagram_editor/widget/option_icon.dart';
 import 'package:flutter/material.dart';
 
 class SimpleDemoEditor extends StatefulWidget {
@@ -11,8 +11,8 @@ class SimpleDemoEditor extends StatefulWidget {
 }
 
 class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
-  DiagramEditorContext diagramEditorContext;
-  DiagramEditorContext diagramEditorContextMiniMap;
+  late DiagramEditorContext diagramEditorContext;
+  late DiagramEditorContext diagramEditorContextMiniMap;
 
   MyPolicySet myPolicySet = MyPolicySet();
   MiniMapPolicySet miniMapPolicySet = MiniMapPolicySet();
@@ -26,9 +26,8 @@ class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
     diagramEditorContext = DiagramEditorContext(
       policySet: myPolicySet,
     );
-    diagramEditorContextMiniMap = DiagramEditorContext.withSharedModel(
-        diagramEditorContext,
-        policySet: miniMapPolicySet);
+    diagramEditorContextMiniMap =
+        DiagramEditorContext.withSharedModel(diagramEditorContext, policySet: miniMapPolicySet);
 
     super.initState();
   }
@@ -84,9 +83,7 @@ class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
                         color: Colors.grey[300],
                         child: Padding(
                           padding: EdgeInsets.all(4),
-                          child: Text(isMiniMapVisible
-                              ? 'hide minimap'
-                              : 'show minimap'),
+                          child: Text(isMiniMapVisible ? 'hide minimap' : 'show minimap'),
                         ),
                       ),
                     )
@@ -102,8 +99,7 @@ class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
                     children: [
                       OptionIcon(
                         color: Colors.grey.withOpacity(0.7),
-                        iconData:
-                            isOptionsVisible ? Icons.menu_open : Icons.menu,
+                        iconData: isOptionsVisible ? Icons.menu_open : Icons.menu,
                         shape: BoxShape.rectangle,
                         onPressed: () {
                           setState(() {
@@ -132,17 +128,12 @@ class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
                             ),
                             SizedBox(width: 8),
                             OptionIcon(
-                              tooltip: myPolicySet.isGridVisible
-                                  ? 'hide grid'
-                                  : 'show grid',
+                              tooltip: myPolicySet.isGridVisible ? 'hide grid' : 'show grid',
                               color: Colors.grey.withOpacity(0.7),
-                              iconData: myPolicySet.isGridVisible
-                                  ? Icons.grid_off
-                                  : Icons.grid_on,
+                              iconData: myPolicySet.isGridVisible ? Icons.grid_off : Icons.grid_on,
                               onPressed: () {
                                 setState(() {
-                                  myPolicySet.isGridVisible =
-                                      !myPolicySet.isGridVisible;
+                                  myPolicySet.isGridVisible = !myPolicySet.isGridVisible;
                                 });
                               },
                             ),
@@ -159,24 +150,21 @@ class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
                                         tooltip: 'select all',
                                         color: Colors.grey.withOpacity(0.7),
                                         iconData: Icons.all_inclusive,
-                                        onPressed: () =>
-                                            myPolicySet.selectAll(),
+                                        onPressed: () => myPolicySet.selectAll(),
                                       ),
                                       SizedBox(height: 8),
                                       OptionIcon(
                                         tooltip: 'duplicate selected',
                                         color: Colors.grey.withOpacity(0.7),
                                         iconData: Icons.copy,
-                                        onPressed: () =>
-                                            myPolicySet.duplicateSelected(),
+                                        onPressed: () => myPolicySet.duplicateSelected(),
                                       ),
                                       SizedBox(height: 8),
                                       OptionIcon(
                                         tooltip: 'remove selected',
                                         color: Colors.grey.withOpacity(0.7),
                                         iconData: Icons.delete,
-                                        onPressed: () =>
-                                            myPolicySet.removeSelected(),
+                                        onPressed: () => myPolicySet.removeSelected(),
                                       ),
                                     ],
                                   ),
@@ -187,9 +175,8 @@ class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
                                       ? 'cancel multiselection'
                                       : 'enable multiselection',
                                   color: Colors.grey.withOpacity(0.7),
-                                  iconData: myPolicySet.isMultipleSelectionOn
-                                      ? Icons.group_work
-                                      : Icons.group_work_outlined,
+                                  iconData:
+                                      myPolicySet.isMultipleSelectionOn ? Icons.group_work : Icons.group_work_outlined,
                                   onPressed: () {
                                     setState(() {
                                       if (myPolicySet.isMultipleSelectionOn) {
@@ -236,8 +223,7 @@ class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
                           color: Colors.grey[300],
                           child: Padding(
                             padding: EdgeInsets.all(4),
-                            child:
-                                Text(isMenuVisible ? 'hide menu' : 'show menu'),
+                            child: Text(isMenuVisible ? 'hide menu' : 'show menu'),
                           ),
                         ),
                       ),

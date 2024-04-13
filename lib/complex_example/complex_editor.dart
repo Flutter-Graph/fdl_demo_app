@@ -1,8 +1,8 @@
 import 'dart:math' as math;
 
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:diagram_editor_apps/complex_example/components/rainbow.dart';
-import 'package:diagram_editor_apps/complex_example/components/random.dart';
+import 'package:fdl_demo_app_2/complex_example/components/rainbow.dart';
+import 'package:fdl_demo_app_2/complex_example/components/random.dart';
 import 'package:flutter/material.dart';
 
 class ComplexDiagramEditor extends StatefulWidget {
@@ -12,7 +12,7 @@ class ComplexDiagramEditor extends StatefulWidget {
 
 class _ComplexDiagramEditorState extends State<ComplexDiagramEditor> {
   MyPolicySet myPolicySet = MyPolicySet();
-  DiagramEditorContext diagramEditorContext;
+  late DiagramEditorContext diagramEditorContext;
 
   @override
   void initState() {
@@ -74,8 +74,7 @@ class _ComplexDiagramEditorState extends State<ComplexDiagramEditor> {
 
 class MyComponentData {
   bool isHighlightVisible;
-  Color color =
-      Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
+  Color color = Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
 
   MyComponentData({
     this.isHighlightVisible = false,
@@ -110,7 +109,7 @@ class MyPolicySet extends PolicySet
 mixin MyInitPolicy implements InitPolicy {
   @override
   initializeDiagramEditor() {
-    canvasWriter.state.setCanvasColor(Colors.grey[300]);
+    canvasWriter.state.setCanvasColor(Color(0xFFE0E0E0));
   }
 }
 
@@ -120,23 +119,16 @@ mixin MyComponentDesignPolicy implements ComponentDesignPolicy, CustomPolicy {
     switch (componentData.type) {
       case 'rainbow':
         return ComplexRainbowComponent(componentData: componentData);
-        break;
       case 'random':
         return RandomComponent(componentData: componentData);
-        break;
       case 'flutter':
         return Container(
-          color: componentData.data.isHighlightVisible
-              ? Colors.transparent
-              : Colors.limeAccent,
-          child: componentData.data.isHighlightVisible
-              ? FlutterLogo(style: FlutterLogoStyle.horizontal)
-              : FlutterLogo(),
+          color: componentData.data.isHighlightVisible ? Colors.transparent : Colors.limeAccent,
+          child:
+              componentData.data.isHighlightVisible ? FlutterLogo(style: FlutterLogoStyle.horizontal) : FlutterLogo(),
         );
-        break;
       default:
         return SizedBox.shrink();
-        break;
     }
   }
 }
@@ -151,8 +143,7 @@ mixin MyCanvasPolicy implements CanvasPolicy, CustomPolicy {
     canvasWriter.model.addComponent(
       ComponentData(
         size: Size(400, 300),
-        position:
-            canvasReader.state.fromCanvasCoordinates(details.localPosition),
+        position: canvasReader.state.fromCanvasCoordinates(details.localPosition),
         data: MyComponentData(),
         type: ['rainbow', 'random', 'flutter'][math.Random().nextInt(3)],
       ),
@@ -161,7 +152,7 @@ mixin MyCanvasPolicy implements CanvasPolicy, CustomPolicy {
 }
 
 mixin MyComponentPolicy implements ComponentPolicy, CustomPolicy {
-  Offset lastFocalPoint;
+  late Offset lastFocalPoint;
 
   @override
   onComponentTap(String componentId) {
@@ -199,18 +190,21 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomPolicy {
     lastFocalPoint = details.localFocalPoint;
   }
 
-  bool connectComponents(String sourceComponentId, String targetComponentId) {
+  bool connectComponents(String? sourceComponentId, String? targetComponentId) {
     if (sourceComponentId == null) {
+      return false;
+    }
+    if (targetComponentId == null) {
       return false;
     }
     if (sourceComponentId == targetComponentId) {
       return false;
     }
     // test if the connection between two components already exists (one way)
-    if (canvasReader.model.getComponent(sourceComponentId).connections.any(
-        (connection) =>
-            (connection is ConnectionOut) &&
-            (connection.otherComponentId == targetComponentId))) {
+    if (canvasReader.model
+        .getComponent(sourceComponentId)
+        .connections
+        .any((connection) => (connection is ConnectionOut) && (connection.otherComponentId == targetComponentId))) {
       return false;
     }
 
@@ -233,15 +227,15 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomPolicy {
 }
 
 mixin CustomPolicy implements PolicySet {
-  String selectedComponentId;
+  String? selectedComponentId;
 
   highlightComponent(String componentId) {
     canvasReader.model.getComponent(componentId).data.showHighlight();
     canvasReader.model.getComponent(componentId).updateComponent();
   }
 
-  hideComponentHighlight(String componentId) {
-    if (selectedComponentId != null) {
+  hideComponentHighlight(String? componentId) {
+    if (selectedComponentId != null && componentId != null) {
       canvasReader.model.getComponent(componentId).data.hideHighlight();
       canvasReader.model.getComponent(componentId).updateComponent();
     }
@@ -259,8 +253,7 @@ mixin MyLinkAttachmentPolicy implements LinkAttachmentPolicy {
     ComponentData componentData,
     Offset targetPoint,
   ) {
-    Offset pointPosition = targetPoint -
-        (componentData.position + componentData.size.center(Offset.zero));
+    Offset pointPosition = targetPoint - (componentData.position + componentData.size.center(Offset.zero));
     pointPosition = Offset(
       pointPosition.dx / componentData.size.width,
       pointPosition.dy / componentData.size.height,
@@ -269,23 +262,18 @@ mixin MyLinkAttachmentPolicy implements LinkAttachmentPolicy {
     switch (componentData.type) {
       case 'random':
         return Alignment.center;
-        break;
 
       case 'flutter':
         return Alignment(-0.54, 0);
-        break;
 
       default:
         Offset pointAlignment;
         if (pointPosition.dx.abs() >= pointPosition.dy.abs()) {
-          pointAlignment = Offset(pointPosition.dx / pointPosition.dx.abs(),
-              pointPosition.dy / pointPosition.dx.abs());
+          pointAlignment = Offset(pointPosition.dx / pointPosition.dx.abs(), pointPosition.dy / pointPosition.dx.abs());
         } else {
-          pointAlignment = Offset(pointPosition.dx / pointPosition.dy.abs(),
-              pointPosition.dy / pointPosition.dy.abs());
+          pointAlignment = Offset(pointPosition.dx / pointPosition.dy.abs(), pointPosition.dy / pointPosition.dy.abs());
         }
         return Alignment(pointAlignment.dx, pointAlignment.dy);
-        break;
     }
   }
 }

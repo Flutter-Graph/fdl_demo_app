@@ -1,5 +1,5 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:diagram_editor_apps/simple_diagram_editor/data/custom_component_data.dart';
+import 'package:fdl_demo_app_2/simple_diagram_editor/data/custom_component_data.dart';
 import 'package:flutter/material.dart';
 
 class BaseComponentBody extends StatelessWidget {
@@ -7,10 +7,9 @@ class BaseComponentBody extends StatelessWidget {
   final CustomPainter componentPainter;
 
   const BaseComponentBody({
-    Key key,
-    this.componentData,
-    this.componentPainter,
-  }) : super(key: key);
+    required this.componentData,
+    required this.componentPainter,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,5 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:diagram_editor_apps/simple_diagram_editor/data/custom_component_data.dart';
+import 'package:fdl_demo_app_2/simple_diagram_editor/data/custom_component_data.dart';
 import 'package:flutter/material.dart';
 
 mixin CustomStatePolicy implements PolicySet {
@@ -23,16 +23,16 @@ mixin CustomStatePolicy implements PolicySet {
     'no_corner_rect',
   ];
 
-  String selectedComponentId;
+  String? selectedComponentId;
 
   bool isMultipleSelectionOn = false;
-  List<String> multipleSelected = [];
+  List<String?> multipleSelected = [];
 
   Offset deleteLinkPos = Offset.zero;
 
   bool isReadyToConnect = false;
 
-  String selectedLinkId;
+  String? selectedLinkId;
   Offset tapLinkPosition = Offset.zero;
 
   hideAllHighlights() {
@@ -72,7 +72,8 @@ mixin CustomStatePolicy implements PolicySet {
     hideAllHighlights();
   }
 
-  addComponentToMultipleSelection(String componentId) {
+  addComponentToMultipleSelection(String? componentId) {
+    if (componentId == null) return;
     if (!multipleSelected.contains(componentId)) {
       multipleSelected.add(componentId);
     }
@@ -114,8 +115,9 @@ mixin CustomBehaviourPolicy implements PolicySet, CustomStatePolicy {
   }
 
   removeSelected() {
-    multipleSelected.forEach((compId) {
-      canvasWriter.model.removeComponent(compId);
+    multipleSelected.forEach((componentId) {
+      if (componentId == null) return;
+      canvasWriter.model.removeComponent(componentId);
     });
     multipleSelected = [];
   }
@@ -123,6 +125,7 @@ mixin CustomBehaviourPolicy implements PolicySet, CustomStatePolicy {
   duplicateSelected() {
     List<String> duplicated = [];
     multipleSelected.forEach((componentId) {
+      if (componentId == null) return;
       String newId = duplicate(canvasReader.model.getComponent(componentId));
       duplicated.add(newId);
     });

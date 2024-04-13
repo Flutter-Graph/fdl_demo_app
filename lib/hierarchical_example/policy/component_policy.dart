@@ -1,21 +1,23 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:diagram_editor_apps/hierarchical_example/policy/custom_policy.dart';
+import 'package:fdl_demo_app_2/hierarchical_example/policy/custom_policy.dart';
 import 'package:flutter/material.dart';
 
 mixin MyComponentPolicy implements ComponentPolicy, CustomPolicy {
-  Offset lastFocalPoint;
+  late Offset lastFocalPoint;
 
   @override
   onComponentTap(String componentId) {
     hideComponentHighlight(selectedComponentId);
     canvasWriter.model.hideAllLinkJoints();
 
+    if (selectedComponentId == null) return;
+
     if (isReadyToAddParent) {
-      canvasWriter.model.setComponentParent(selectedComponentId, componentId);
+      canvasWriter.model.setComponentParent(selectedComponentId!, componentId);
       selectedComponentId = null;
       isReadyToAddParent = false;
     } else {
-      bool connected = connectComponents(selectedComponentId, componentId);
+      bool connected = connectComponents(selectedComponentId!, componentId);
       if (connected) {
         selectedComponentId = null;
       } else {
@@ -39,18 +41,21 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomPolicy {
     lastFocalPoint = details.localFocalPoint;
   }
 
-  bool connectComponents(String sourceComponentId, String targetComponentId) {
+  bool connectComponents(String? sourceComponentId, String? targetComponentId) {
     if (sourceComponentId == null) {
+      return false;
+    }
+    if (targetComponentId == null) {
       return false;
     }
     if (sourceComponentId == targetComponentId) {
       return false;
     }
     // test if the connection between two components already exists (one way)
-    if (canvasReader.model.getComponent(sourceComponentId).connections.any(
-        (connection) =>
-            (connection is ConnectionOut) &&
-            (connection.otherComponentId == targetComponentId))) {
+    if (canvasReader.model
+        .getComponent(sourceComponentId)
+        .connections
+        .any((connection) => (connection is ConnectionOut) && (connection.otherComponentId == targetComponentId))) {
       return false;
     }
 

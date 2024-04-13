@@ -1,14 +1,13 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:diagram_editor_apps/simple_diagram_editor/widget/component/base_component_body.dart';
+import 'package:fdl_demo_app_2/simple_diagram_editor/widget/component/base_component_body.dart';
 import 'package:flutter/material.dart';
 
 class DocumentBody extends StatelessWidget {
   final ComponentData componentData;
 
   const DocumentBody({
-    Key key,
-    this.componentData,
-  }) : super(key: key);
+    required this.componentData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class DocumentPainter extends CustomPainter {
   final Color color;
   final Color borderColor;
   final double borderWidth;
-  Size componentSize;
+  Size componentSize = Size(0, 0);
 
   DocumentPainter({
     this.color = Colors.grey,

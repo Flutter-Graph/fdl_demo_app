@@ -1,15 +1,14 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:diagram_editor_apps/simple_diagram_editor/data/custom_component_data.dart';
-import 'package:diagram_editor_apps/simple_diagram_editor/policy/my_policy_set.dart';
+import 'package:fdl_demo_app_2/simple_diagram_editor/data/custom_component_data.dart';
+import 'package:fdl_demo_app_2/simple_diagram_editor/policy/my_policy_set.dart';
 import 'package:flutter/material.dart';
 
 class DraggableMenu extends StatelessWidget {
   final MyPolicySet myPolicySet;
 
   const DraggableMenu({
-    Key key,
-    this.myPolicySet,
-  }) : super(key: key);
+    required this.myPolicySet,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +23,10 @@ class DraggableMenu extends StatelessWidget {
                 builder: (context, constraints) {
                   return SizedBox(
                     width: constraints.maxWidth < componentData.size.width
-                        ? componentData.size.width *
-                            (constraints.maxWidth / componentData.size.width)
+                        ? componentData.size.width * (constraints.maxWidth / componentData.size.width)
                         : componentData.size.width,
                     height: constraints.maxWidth < componentData.size.width
-                        ? componentData.size.height *
-                            (constraints.maxWidth / componentData.size.width)
+                        ? componentData.size.height * (constraints.maxWidth / componentData.size.width)
                         : componentData.size.height,
                     child: Align(
                       alignment: Alignment.center,
@@ -66,7 +63,6 @@ class DraggableMenu extends StatelessWidget {
           ),
           type: componentType,
         );
-        break;
       default:
         return ComponentData(
           size: Size(120, 72),
@@ -78,7 +74,6 @@ class DraggableMenu extends StatelessWidget {
           ),
           type: componentType,
         );
-        break;
     }
   }
 }
@@ -88,10 +83,9 @@ class DraggableComponent extends StatelessWidget {
   final ComponentData componentData;
 
   const DraggableComponent({
-    Key key,
-    this.myPolicySet,
-    this.componentData,
-  }) : super(key: key);
+    required this.myPolicySet,
+    required this.componentData,
+  });
 
   @override
   Widget build(BuildContext context) {

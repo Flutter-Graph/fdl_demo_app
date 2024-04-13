@@ -1,11 +1,10 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:diagram_editor_apps/hierarchical_example/policy/policy_set.dart';
+import 'package:fdl_demo_app_2/hierarchical_example/policy/policy_set.dart';
 import 'package:flutter/material.dart';
 
 class HierarchicalDiagramEditor extends StatefulWidget {
   @override
-  _HierarchicalDiagramEditorState createState() =>
-      _HierarchicalDiagramEditorState();
+  _HierarchicalDiagramEditorState createState() => _HierarchicalDiagramEditorState();
 }
 
 class _HierarchicalDiagramEditorState extends State<HierarchicalDiagramEditor> {
