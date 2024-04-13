@@ -3,14 +3,16 @@ import 'package:diagram_editor_apps/grid_example/policy/policy_set.dart';
 import 'package:diagram_editor_apps/grid_example/widget/snap_switch.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(GridDiagramEditor());
+void main() => runApp(const GridDiagramEditor());
 
 class GridDiagramEditor extends StatefulWidget {
+  const GridDiagramEditor({super.key});
+
   @override
-  _GridDiagramEditorState createState() => _GridDiagramEditorState();
+  GridDiagramEditorState createState() => GridDiagramEditorState();
 }
 
-class _GridDiagramEditorState extends State<GridDiagramEditor> {
+class GridDiagramEditorState extends State<GridDiagramEditor> {
   MyPolicySet myPolicySet = MyPolicySet();
 
   @override
@@ -22,7 +24,7 @@ class _GridDiagramEditorState extends State<GridDiagramEditor> {
             children: [
               Container(color: Colors.grey),
               Padding(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: DiagramEditor(
                   diagramEditorContext: DiagramEditorContext(
                     policySet: myPolicySet,
@@ -35,7 +37,7 @@ class _GridDiagramEditorState extends State<GridDiagramEditor> {
                   width: 80,
                   height: 32,
                   color: Colors.red,
-                  child: Center(child: Text('delete all')),
+                  child: const Center(child: Text('delete all')),
                 ),
               ),
               SpanSwitch(policySet: myPolicySet),
@@ -46,7 +48,7 @@ class _GridDiagramEditorState extends State<GridDiagramEditor> {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
-                  child: Row(
+                  child: const Row(
                     children: [
                       Icon(Icons.arrow_back, size: 16),
                       SizedBox(width: 8),

@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 class PortSwitch extends StatefulWidget {
   final MyPolicySet policySet;
 
-  const PortSwitch({required this.policySet});
+  const PortSwitch({super.key, required this.policySet});
 
   @override
-  _PortSwitchState createState() => _PortSwitchState();
+  PortSwitchState createState() => PortSwitchState();
 }
 
-class _PortSwitchState extends State<PortSwitch> {
+class PortSwitchState extends State<PortSwitch> {
   @override
   Widget build(BuildContext context) {
     return Positioned(

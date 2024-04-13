@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class HexagonVerticalBody extends StatelessWidget {
   final ComponentData componentData;
 
-  const HexagonVerticalBody({
+  const HexagonVerticalBody({super.key, 
     required this.componentData,
   });
 
@@ -26,7 +26,7 @@ class HexagonVerticalPainter extends CustomPainter {
   final Color color;
   final Color borderColor;
   final double borderWidth;
-  Size componentSize = Size(0, 0);
+  Size componentSize = const Size(0, 0);
 
   HexagonVerticalPainter({
     this.color = Colors.grey,

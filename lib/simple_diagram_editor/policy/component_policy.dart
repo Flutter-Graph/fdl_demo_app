@@ -21,10 +21,8 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomStatePolicy {
         isReadyToConnect = false;
         bool connected = connectComponents(selectedComponentId, componentId);
         if (connected) {
-          print('connected');
           selectedComponentId = null;
         } else {
-          print('not connected');
           selectedComponentId = componentId;
           highlightComponent(componentId);
         }
@@ -52,16 +50,16 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomStatePolicy {
   onComponentScaleUpdate(componentId, details) {
     Offset positionDelta = details.localFocalPoint - lastFocalPoint;
     if (isMultipleSelectionOn) {
-      multipleSelected.forEach((componentId) {
-        if (componentId == null) return;
+      for (var componentId in multipleSelected) {
+        if (componentId == null) continue;
         var cmp = canvasReader.model.getComponent(componentId);
         canvasWriter.model.moveComponent(componentId, positionDelta);
-        cmp.connections.forEach((connection) {
+        for (var connection in cmp.connections) {
           if (connection is ConnectionOut && multipleSelected.contains(connection.otherComponentId)) {
             canvasWriter.model.moveAllLinkMiddlePoints(connection.connectionId, positionDelta);
           }
-        });
-      });
+        }
+      }
     } else {
       canvasWriter.model.moveComponent(componentId, positionDelta);
     }

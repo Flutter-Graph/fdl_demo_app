@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 void main() => runApp(const PubDiagramEditor());
 
 class PubDiagramEditor extends StatefulWidget {
-  const PubDiagramEditor({Key? key}) : super(key: key);
+  const PubDiagramEditor({super.key});
 
   @override
-  _PubDiagramEditorState createState() => _PubDiagramEditorState();
+  PubDiagramEditorState createState() => PubDiagramEditorState();
 }
 
-class _PubDiagramEditorState extends State<PubDiagramEditor> {
+class PubDiagramEditorState extends State<PubDiagramEditor> {
   MyPolicySet myPolicySet = MyPolicySet();
 
   @override

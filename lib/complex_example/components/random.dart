@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class RandomComponent extends StatelessWidget {
   final ComponentData componentData;
 
-  const RandomComponent({
+  const RandomComponent({super.key, 
     required this.componentData,
   });
 
@@ -68,7 +68,7 @@ class RandomPainter extends CustomPainter {
 
     canvas.drawPath(path, paint);
 
-    paint..color = color;
+    paint.color = color;
 
     canvas.drawPath(path2, paint);
 

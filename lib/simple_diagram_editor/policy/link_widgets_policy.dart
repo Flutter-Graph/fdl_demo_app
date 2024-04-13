@@ -53,9 +53,9 @@ mixin MyLinkWidgetsPolicy implements LinkWidgetsPolicy, CustomStatePolicy {
                 ),
                 width: 32,
                 height: 32,
-                child: Center(child: Icon(Icons.close, size: 20))),
+                child: const Center(child: Icon(Icons.close, size: 20))),
           ),
-          SizedBox(width: 8),
+          const SizedBox(width: 8),
           GestureDetector(
             onTap: () {
               showEditLinkDialog(
@@ -70,7 +70,7 @@ mixin MyLinkWidgetsPolicy implements LinkWidgetsPolicy, CustomStatePolicy {
                 ),
                 width: 32,
                 height: 32,
-                child: Center(child: Icon(Icons.edit, size: 20))),
+                child: const Center(child: Icon(Icons.edit, size: 20))),
           ),
         ],
       ),
@@ -83,16 +83,14 @@ mixin MyLinkWidgetsPolicy implements LinkWidgetsPolicy, CustomStatePolicy {
       top: position.dy,
       width: size * canvasReader.state.scale,
       height: size * canvasReader.state.scale,
-      child: Container(
-        child: GestureDetector(
-          onTap: () {},
-          onLongPress: () {},
-          child: Center(
-            child: Text(
-              label,
-              style: TextStyle(
-                fontSize: 10 * canvasReader.state.scale,
-              ),
+      child: GestureDetector(
+        onTap: () {},
+        onLongPress: () {},
+        child: Center(
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 10 * canvasReader.state.scale,
             ),
           ),
         ),

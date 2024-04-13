@@ -6,11 +6,13 @@ import 'package:diagram_editor_apps/complex_example/components/random.dart';
 import 'package:flutter/material.dart';
 
 class ComplexDiagramEditor extends StatefulWidget {
+  const ComplexDiagramEditor({super.key});
+
   @override
-  _ComplexDiagramEditorState createState() => _ComplexDiagramEditorState();
+  ComplexDiagramEditorState createState() => ComplexDiagramEditorState();
 }
 
-class _ComplexDiagramEditorState extends State<ComplexDiagramEditor> {
+class ComplexDiagramEditorState extends State<ComplexDiagramEditor> {
   MyPolicySet myPolicySet = MyPolicySet();
   late DiagramEditorContext diagramEditorContext;
 
@@ -31,7 +33,7 @@ class _ComplexDiagramEditorState extends State<ComplexDiagramEditor> {
             children: [
               Container(color: Colors.grey),
               Padding(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: DiagramEditor(
                   diagramEditorContext: diagramEditorContext,
                 ),
@@ -42,7 +44,7 @@ class _ComplexDiagramEditorState extends State<ComplexDiagramEditor> {
                   width: 80,
                   height: 32,
                   color: Colors.red,
-                  child: Center(child: Text('delete all')),
+                  child: const Center(child: Text('delete all')),
                 ),
               ),
               Positioned(
@@ -52,7 +54,7 @@ class _ComplexDiagramEditorState extends State<ComplexDiagramEditor> {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
-                  child: Row(
+                  child: const Row(
                     children: [
                       Icon(Icons.arrow_back, size: 16),
                       SizedBox(width: 8),
@@ -109,7 +111,7 @@ class MyPolicySet extends PolicySet
 mixin MyInitPolicy implements InitPolicy {
   @override
   initializeDiagramEditor() {
-    canvasWriter.state.setCanvasColor(Color(0xFFE0E0E0));
+    canvasWriter.state.setCanvasColor(const Color(0xFFE0E0E0));
   }
 }
 
@@ -124,11 +126,12 @@ mixin MyComponentDesignPolicy implements ComponentDesignPolicy, CustomPolicy {
       case 'flutter':
         return Container(
           color: componentData.data.isHighlightVisible ? Colors.transparent : Colors.limeAccent,
-          child:
-              componentData.data.isHighlightVisible ? FlutterLogo(style: FlutterLogoStyle.horizontal) : FlutterLogo(),
+          child: componentData.data.isHighlightVisible
+              ? const FlutterLogo(style: FlutterLogoStyle.horizontal)
+              : const FlutterLogo(),
         );
       default:
-        return SizedBox.shrink();
+        return const SizedBox.shrink();
     }
   }
 }
@@ -142,7 +145,7 @@ mixin MyCanvasPolicy implements CanvasPolicy, CustomPolicy {
 
     canvasWriter.model.addComponent(
       ComponentData(
-        size: Size(400, 300),
+        size: const Size(400, 300),
         position: canvasReader.state.fromCanvasCoordinates(details.localPosition),
         data: MyComponentData(),
         type: ['rainbow', 'random', 'flutter'][math.Random().nextInt(3)],
@@ -264,7 +267,7 @@ mixin MyLinkAttachmentPolicy implements LinkAttachmentPolicy {
         return Alignment.center;
 
       case 'flutter':
-        return Alignment(-0.54, 0);
+        return const Alignment(-0.54, 0);
 
       default:
         Offset pointAlignment;

@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 
 mixin MyCanvasPolicy implements CanvasPolicy, CustomPolicy {
   var sizes = [
-    Size(80, 60),
-    Size(200, 150),
+    const Size(80, 60),
+    const Size(200, 150),
   ];
 
   @override
@@ -26,7 +26,7 @@ mixin MyCanvasPolicy implements CanvasPolicy, CustomPolicy {
         canvasWriter.model.addComponent(
           ComponentData(
             size: sizes[math.Random().nextInt(sizes.length)],
-            minSize: Size(72, 48),
+            minSize: const Size(72, 48),
             position: canvasReader.state.fromCanvasCoordinates(details.localPosition),
             data: MyComponentData(),
           ),

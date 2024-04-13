@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class DraggableMenu extends StatelessWidget {
   final MyPolicySet myPolicySet;
 
-  const DraggableMenu({
+  const DraggableMenu({super.key, 
     required this.myPolicySet,
   });
 
@@ -18,7 +18,7 @@ class DraggableMenu extends StatelessWidget {
           (componentType) {
             var componentData = getComponentData(componentType);
             return Padding(
-              padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
+              padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   return SizedBox(
@@ -46,7 +46,7 @@ class DraggableMenu extends StatelessWidget {
               ),
             );
           },
-        ).toList(),
+        ),
       ],
     );
   }
@@ -55,8 +55,8 @@ class DraggableMenu extends StatelessWidget {
     switch (componentType) {
       case 'junction':
         return ComponentData(
-          size: Size(16, 16),
-          minSize: Size(4, 4),
+          size: const Size(16, 16),
+          minSize: const Size(4, 4),
           data: MyComponentData(
             color: Colors.black,
             borderWidth: 0.0,
@@ -65,8 +65,8 @@ class DraggableMenu extends StatelessWidget {
         );
       default:
         return ComponentData(
-          size: Size(120, 72),
-          minSize: Size(80, 64),
+          size: const Size(120, 72),
+          minSize: const Size(80, 64),
           data: MyComponentData(
             color: Colors.white,
             borderColor: Colors.black,
@@ -82,7 +82,7 @@ class DraggableComponent extends StatelessWidget {
   final MyPolicySet myPolicySet;
   final ComponentData componentData;
 
-  const DraggableComponent({
+  const DraggableComponent({super.key, 
     required this.myPolicySet,
     required this.componentData,
   });
@@ -96,7 +96,7 @@ class DraggableComponent extends StatelessWidget {
       childWhenDragging: myPolicySet.showComponentBody(componentData),
       feedback: Material(
         color: Colors.transparent,
-        child: Container(
+        child: SizedBox(
           width: componentData.size.width,
           height: componentData.size.height,
           child: myPolicySet.showComponentBody(componentData),

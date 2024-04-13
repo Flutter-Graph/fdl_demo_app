@@ -7,7 +7,7 @@ mixin MyComponentDesignPolicy implements ComponentDesignPolicy, CustomPolicy {
   Widget showComponentBody(ComponentData componentData) {
     final text = Text(
       'id: ${componentData.id.substring(0, 4)}',
-      style: TextStyle(fontSize: 10),
+      style: const TextStyle(fontSize: 10),
     );
     return Container(
       decoration: BoxDecoration(
@@ -16,7 +16,7 @@ mixin MyComponentDesignPolicy implements ComponentDesignPolicy, CustomPolicy {
       ),
       child: Center(
         child: isReadyToAddParent
-            ? Text('tap on parent', style: TextStyle(fontSize: 10))
+            ? const Text('tap on parent', style: TextStyle(fontSize: 10))
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -25,7 +25,7 @@ mixin MyComponentDesignPolicy implements ComponentDesignPolicy, CustomPolicy {
                     componentData.parentId == null
                         ? 'no parent'
                         : 'parent: ${componentData.parentId?.substring(0, 4) ?? 'parent id null'}',
-                    style: TextStyle(fontSize: 10),
+                    style: const TextStyle(fontSize: 10),
                   ),
                 ],
               ),

@@ -68,7 +68,7 @@ mixin MyComponentDesignPolicy implements ComponentDesignPolicy {
         return OvalBody(componentData: componentData);
 
       default:
-        return SizedBox.shrink();
+        return const SizedBox.shrink();
     }
   }
 }

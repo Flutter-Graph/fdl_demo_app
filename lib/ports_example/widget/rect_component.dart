@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class RectComponent extends StatelessWidget {
   final ComponentData componentData;
 
-  const RectComponent({
+  const RectComponent({super.key, 
     required this.componentData,
   });
 

@@ -15,7 +15,7 @@ mixin MyCanvasWidgetsPolicy implements CanvasWidgetsPolicy, CustomPolicy {
           scale: canvasReader.state.scale,
           lineWidth: (canvasReader.state.scale < 1.0) ? canvasReader.state.scale : 1.0,
           matchParentSize: false,
-          lineColor: Color(0xFF0D47A1),
+          lineColor: const Color(0xFF0D47A1),
         ),
       ),
     ];

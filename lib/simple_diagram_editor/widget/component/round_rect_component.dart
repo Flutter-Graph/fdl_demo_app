@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class RoundRectBody extends StatelessWidget {
   final ComponentData componentData;
 
-  const RoundRectBody({
+  const RoundRectBody({super.key, 
     required this.componentData,
   });
 
@@ -26,7 +26,7 @@ class RoundRectPainter extends CustomPainter {
   final Color color;
   final Color borderColor;
   final double borderWidth;
-  Size componentSize = Size(0, 0);
+  Size componentSize = const Size(0, 0);
 
   RoundRectPainter({
     this.color = Colors.grey,
@@ -75,7 +75,7 @@ class RoundRectPainter extends CustomPainter {
           componentSize.width,
           componentSize.height,
         ),
-        Radius.circular(16),
+        const Radius.circular(16),
       ),
     );
 

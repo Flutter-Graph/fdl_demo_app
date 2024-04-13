@@ -5,14 +5,15 @@ class SpanSwitch extends StatefulWidget {
   final MyPolicySet policySet;
 
   const SpanSwitch({
+    super.key,
     required this.policySet,
   });
 
   @override
-  _SpanSwitchState createState() => _SpanSwitchState();
+  SpanSwitchState createState() => SpanSwitchState();
 }
 
-class _SpanSwitchState extends State<SpanSwitch> {
+class SpanSwitchState extends State<SpanSwitch> {
   @override
   Widget build(BuildContext context) {
     return Positioned(

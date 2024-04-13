@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class NoCornerRectBody extends StatelessWidget {
   final ComponentData componentData;
 
-  const NoCornerRectBody({
+  const NoCornerRectBody({super.key, 
     required this.componentData,
   });
 
@@ -26,7 +26,7 @@ class NoCornerRectPainter extends CustomPainter {
   final Color color;
   final Color borderColor;
   final double borderWidth;
-  Size componentSize = Size(0, 0);
+  Size componentSize = const Size(0, 0);
 
   NoCornerRectPainter({
     this.color = Colors.grey,

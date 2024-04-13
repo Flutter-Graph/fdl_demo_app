@@ -10,7 +10,7 @@ class OptionIcon extends StatelessWidget {
   final double iconSize;
   final VoidCallback? onPressed;
 
-  const OptionIcon({
+  const OptionIcon({super.key, 
     this.color = Colors.grey,
     this.size = 40,
     this.shape = BoxShape.circle,
@@ -33,7 +33,7 @@ class OptionIcon extends StatelessWidget {
       child: IconButton(
         tooltip: tooltip,
         onPressed: onPressed,
-        padding: EdgeInsets.all(0),
+        padding: const EdgeInsets.all(0),
         icon: Icon(
           iconData,
           color: iconColor,

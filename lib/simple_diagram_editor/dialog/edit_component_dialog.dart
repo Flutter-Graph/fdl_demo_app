@@ -41,57 +41,53 @@ void showEditComponentDialog(BuildContext context, ComponentData componentData) 
           content: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(width: 600),
-              Text('Edit component', style: TextStyle(fontSize: 20)),
+              const SizedBox(width: 600),
+              const Text('Edit component', style: TextStyle(fontSize: 20)),
               TextField(
                 controller: textController,
                 maxLines: 1,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Text',
                   fillColor: Colors.white,
                 ),
               ),
-              SizedBox(height: 8),
-              Container(
-                child: DropdownButton<Alignment>(
-                  value: textAlignmentDropdown,
-                  onChanged: (Alignment? newValue) {
-                    if (newValue != null) setState(() => textAlignmentDropdown = newValue);
-                  },
-                  items: alignmentValues.map((Alignment alignment) {
-                    return DropdownMenuItem<Alignment>(
-                      value: alignment,
-                      child: Text('$alignment'),
-                    );
-                  }).toList(),
-                ),
+              const SizedBox(height: 8),
+              DropdownButton<Alignment>(
+                value: textAlignmentDropdown,
+                onChanged: (Alignment? newValue) {
+                  if (newValue != null) setState(() => textAlignmentDropdown = newValue);
+                },
+                items: alignmentValues.map((Alignment alignment) {
+                  return DropdownMenuItem<Alignment>(
+                    value: alignment,
+                    child: Text('$alignment'),
+                  );
+                }).toList(),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Row(
                 children: [
-                  Text('Font size:'),
-                  SizedBox(width: 8),
-                  Container(
-                    child: DropdownButton<double>(
-                      value: textSizeDropdown,
-                      onChanged: (double? newValue) {
-                        if (newValue != null) setState(() => textSizeDropdown = newValue);
-                      },
-                      items: textSizeValues.map((double textSize) {
-                        return DropdownMenuItem<double>(
-                          value: textSize,
-                          child: Text('${textSize.toStringAsFixed(0)}'),
-                        );
-                      }).toList(),
-                    ),
+                  const Text('Font size:'),
+                  const SizedBox(width: 8),
+                  DropdownButton<double>(
+                    value: textSizeDropdown,
+                    onChanged: (double? newValue) {
+                      if (newValue != null) setState(() => textSizeDropdown = newValue);
+                    },
+                    items: textSizeValues.map((double textSize) {
+                      return DropdownMenuItem<double>(
+                        value: textSize,
+                        child: Text(textSize.toStringAsFixed(0)),
+                      );
+                    }).toList(),
                   ),
                 ],
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Row(
                 children: [
-                  Text('Component color:'),
-                  SizedBox(width: 16),
+                  const Text('Component color:'),
+                  const SizedBox(width: 16),
                   GestureDetector(
                     onTap: () async {
                       var pickedColor = showPickColorDialog(context, color, 'Pick a component color');
@@ -110,11 +106,11 @@ void showEditComponentDialog(BuildContext context, ComponentData componentData) 
                   ),
                 ],
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Row(
                 children: [
-                  Text('Border color:'),
-                  SizedBox(width: 16),
+                  const Text('Border color:'),
+                  const SizedBox(width: 16),
                   GestureDetector(
                     onTap: () async {
                       var pickedColor = showPickColorDialog(context, borderColor, 'Pick a component border color');
@@ -133,11 +129,11 @@ void showEditComponentDialog(BuildContext context, ComponentData componentData) 
                   ),
                 ],
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Border width:'),
+                  const Text('Border width:'),
                   Row(
                     children: [
                       GestureDetector(
@@ -152,13 +148,13 @@ void showEditComponentDialog(BuildContext context, ComponentData componentData) 
                           });
                         },
                         child: Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Colors.blue,
                               shape: BoxShape.circle,
                             ),
                             width: 32,
                             height: 32,
-                            child: Center(child: Icon(Icons.remove, size: 16))),
+                            child: const Center(child: Icon(Icons.remove, size: 16))),
                       ),
                       Column(
                         children: [
@@ -187,13 +183,13 @@ void showEditComponentDialog(BuildContext context, ComponentData componentData) 
                           });
                         },
                         child: Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Colors.blue,
                               shape: BoxShape.circle,
                             ),
                             width: 32,
                             height: 32,
-                            child: Center(child: Icon(Icons.add, size: 16))),
+                            child: const Center(child: Icon(Icons.add, size: 16))),
                       ),
                     ],
                   ),
@@ -207,7 +203,7 @@ void showEditComponentDialog(BuildContext context, ComponentData componentData) 
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('DISCARD'),
+              child: const Text('DISCARD'),
             ),
             TextButton(
               onPressed: () {
@@ -220,7 +216,7 @@ void showEditComponentDialog(BuildContext context, ComponentData componentData) 
                 componentData.updateComponent();
                 Navigator.of(context).pop();
               },
-              child: Text('SAVE'),
+              child: const Text('SAVE'),
             )
           ],
         );

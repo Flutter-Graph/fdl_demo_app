@@ -6,11 +6,13 @@ import 'package:diagram_editor_apps/simple_diagram_editor/widget/option_icon.dar
 import 'package:flutter/material.dart';
 
 class SimpleDemoEditor extends StatefulWidget {
+  const SimpleDemoEditor({super.key});
+
   @override
-  _SimpleDemoEditorState createState() => _SimpleDemoEditorState();
+  SimpleDemoEditorState createState() => SimpleDemoEditorState();
 }
 
-class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
+class SimpleDemoEditorState extends State<SimpleDemoEditor> {
   late DiagramEditorContext diagramEditorContext;
   late DiagramEditorContext diagramEditorContextMiniMap;
 
@@ -44,7 +46,7 @@ class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
               Container(color: Colors.grey),
               Positioned(
                 child: Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: DiagramEditor(
                     diagramEditorContext: diagramEditorContext,
                   ),
@@ -58,7 +60,7 @@ class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
                   children: [
                     Visibility(
                       visible: isMiniMapVisible,
-                      child: Container(
+                      child: SizedBox(
                         width: 320,
                         height: 240,
                         child: Container(
@@ -82,7 +84,7 @@ class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
                       child: Container(
                         color: Colors.grey[300],
                         child: Padding(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           child: Text(isMiniMapVisible ? 'hide minimap' : 'show minimap'),
                         ),
                       ),
@@ -93,7 +95,7 @@ class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
               Align(
                 alignment: Alignment.bottomLeft,
                 child: Padding(
-                  padding: EdgeInsets.all(24),
+                  padding: const EdgeInsets.all(24),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -107,7 +109,7 @@ class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
                           });
                         },
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       Visibility(
                         visible: isOptionsVisible,
                         child: Row(
@@ -119,14 +121,14 @@ class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
                               iconData: Icons.replay,
                               onPressed: () => myPolicySet.resetView(),
                             ),
-                            SizedBox(width: 8),
+                            const SizedBox(width: 8),
                             OptionIcon(
                               tooltip: 'delete all',
                               color: Colors.grey.withOpacity(0.7),
                               iconData: Icons.delete_forever,
                               onPressed: () => myPolicySet.removeAll(),
                             ),
-                            SizedBox(width: 8),
+                            const SizedBox(width: 8),
                             OptionIcon(
                               tooltip: myPolicySet.isGridVisible ? 'hide grid' : 'show grid',
                               color: Colors.grey.withOpacity(0.7),
@@ -137,7 +139,7 @@ class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
                                 });
                               },
                             ),
-                            SizedBox(width: 8),
+                            const SizedBox(width: 8),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
@@ -152,14 +154,14 @@ class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
                                         iconData: Icons.all_inclusive,
                                         onPressed: () => myPolicySet.selectAll(),
                                       ),
-                                      SizedBox(height: 8),
+                                      const SizedBox(height: 8),
                                       OptionIcon(
                                         tooltip: 'duplicate selected',
                                         color: Colors.grey.withOpacity(0.7),
                                         iconData: Icons.copy,
                                         onPressed: () => myPolicySet.duplicateSelected(),
                                       ),
-                                      SizedBox(height: 8),
+                                      const SizedBox(height: 8),
                                       OptionIcon(
                                         tooltip: 'remove selected',
                                         color: Colors.grey.withOpacity(0.7),
@@ -169,7 +171,7 @@ class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
                                     ],
                                   ),
                                 ),
-                                SizedBox(height: 8),
+                                const SizedBox(height: 8),
                                 OptionIcon(
                                   tooltip: myPolicySet.isMultipleSelectionOn
                                       ? 'cancel multiselection'
@@ -222,7 +224,7 @@ class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
                         child: Container(
                           color: Colors.grey[300],
                           child: Padding(
-                            padding: EdgeInsets.all(4),
+                            padding: const EdgeInsets.all(4),
                             child: Text(isMenuVisible ? 'hide menu' : 'show menu'),
                           ),
                         ),
@@ -238,7 +240,7 @@ class _SimpleDemoEditorState extends State<SimpleDemoEditor> {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
-                  child: Row(
+                  child: const Row(
                     children: [
                       Icon(Icons.arrow_back, size: 16),
                       SizedBox(width: 8),

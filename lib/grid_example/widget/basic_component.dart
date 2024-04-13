@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BasicComponent extends StatelessWidget {
+  const BasicComponent({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(

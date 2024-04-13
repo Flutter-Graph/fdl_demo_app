@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class CrystalBody extends StatelessWidget {
   final ComponentData componentData;
 
-  const CrystalBody({
+  const CrystalBody({super.key, 
     required this.componentData,
   });
 
@@ -26,7 +26,7 @@ class CrystalPainter extends CustomPainter {
   final Color color;
   final Color borderColor;
   final double borderWidth;
-  Size componentSize = Size(0, 0);
+  Size componentSize = const Size(0, 0);
 
   CrystalPainter({
     this.color = Colors.grey,

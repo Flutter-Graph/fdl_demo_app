@@ -89,7 +89,7 @@ mixin CustomStatePolicy implements PolicySet {
       size: componentData.size,
       minSize: componentData.minSize,
       data: MyComponentData.copy(componentData.data),
-      position: componentData.position + Offset(20, 20),
+      position: componentData.position + const Offset(20, 20),
     );
     String id = canvasWriter.model.addComponent(cd);
     return id;
@@ -115,35 +115,35 @@ mixin CustomBehaviourPolicy implements PolicySet, CustomStatePolicy {
   }
 
   removeSelected() {
-    multipleSelected.forEach((componentId) {
-      if (componentId == null) return;
+    for (var componentId in multipleSelected) {
+      if (componentId == null) continue;
       canvasWriter.model.removeComponent(componentId);
-    });
+    }
     multipleSelected = [];
   }
 
   duplicateSelected() {
     List<String> duplicated = [];
-    multipleSelected.forEach((componentId) {
-      if (componentId == null) return;
+    for (var componentId in multipleSelected) {
+      if (componentId == null) continue;
       String newId = duplicate(canvasReader.model.getComponent(componentId));
       duplicated.add(newId);
-    });
+    }
     hideAllHighlights();
     multipleSelected = [];
-    duplicated.forEach((componentId) {
+    for (var componentId in duplicated) {
       addComponentToMultipleSelection(componentId);
       highlightComponent(componentId);
       canvasWriter.model.moveComponentToTheFront(componentId);
-    });
+    }
   }
 
   selectAll() {
     var components = canvasReader.model.canvasModel.components.keys;
 
-    components.forEach((componentId) {
+    for (var componentId in components) {
       addComponentToMultipleSelection(componentId);
       highlightComponent(componentId);
-    });
+    }
   }
 }

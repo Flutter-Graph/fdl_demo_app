@@ -41,7 +41,7 @@ mixin MyComponentWidgetsPolicy implements ComponentWidgetsPolicy, CustomStatePol
               selectedComponentId = null;
             },
           ),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           OptionIcon(
             color: Colors.grey.withOpacity(0.7),
             iconData: Icons.copy,
@@ -55,7 +55,7 @@ mixin MyComponentWidgetsPolicy implements ComponentWidgetsPolicy, CustomStatePol
               highlightComponent(newId);
             },
           ),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           OptionIcon(
             color: Colors.grey.withOpacity(0.7),
             iconData: Icons.edit,
@@ -63,7 +63,7 @@ mixin MyComponentWidgetsPolicy implements ComponentWidgetsPolicy, CustomStatePol
             size: 40,
             onPressed: () => showEditComponentDialog(context, componentData),
           ),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           OptionIcon(
             color: Colors.grey.withOpacity(0.7),
             iconData: Icons.link_off,
@@ -92,7 +92,7 @@ mixin MyComponentWidgetsPolicy implements ComponentWidgetsPolicy, CustomStatePol
             shape: BoxShape.rectangle,
             onPressed: () => canvasWriter.model.moveComponentToTheFront(componentData.id),
           ),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           OptionIcon(
             color: Colors.grey.withOpacity(0.7),
             iconData: Icons.arrow_downward,
@@ -101,7 +101,7 @@ mixin MyComponentWidgetsPolicy implements ComponentWidgetsPolicy, CustomStatePol
             shape: BoxShape.rectangle,
             onPressed: () => canvasWriter.model.moveComponentToTheBack(componentData.id),
           ),
-          SizedBox(width: 40),
+          const SizedBox(width: 40),
           OptionIcon(
             color: Colors.grey.withOpacity(0.7),
             iconData: Icons.arrow_right_alt,
@@ -119,8 +119,8 @@ mixin MyComponentWidgetsPolicy implements ComponentWidgetsPolicy, CustomStatePol
 
   Widget highlight(ComponentData componentData, Color color) {
     return Positioned(
-      left: canvasReader.state.toCanvasCoordinates(componentData.position - Offset(2, 2)).dx,
-      top: canvasReader.state.toCanvasCoordinates(componentData.position - Offset(2, 2)).dy,
+      left: canvasReader.state.toCanvasCoordinates(componentData.position - const Offset(2, 2)).dx,
+      top: canvasReader.state.toCanvasCoordinates(componentData.position - const Offset(2, 2)).dy,
       child: CustomPaint(
         painter: ComponentHighlightPainter(
           width: (componentData.size.width + 4) * canvasReader.state.scale,
@@ -154,7 +154,7 @@ mixin MyComponentWidgetsPolicy implements ComponentWidgetsPolicy, CustomStatePol
                 height: 8,
                 decoration: BoxDecoration(
                   color: Colors.black,
-                  border: Border.all(color: Color(0xFFEEEEEE)),
+                  border: Border.all(color: const Color(0xFFEEEEEE)),
                 ),
               ),
             ),
@@ -181,7 +181,7 @@ mixin MyComponentWidgetsPolicy implements ComponentWidgetsPolicy, CustomStatePol
               selectedComponentId = null;
             },
           ),
-          SizedBox(width: 8),
+          const SizedBox(width: 8),
           OptionIcon(
             color: Colors.grey.withOpacity(0.7),
             iconData: Icons.arrow_right_alt,

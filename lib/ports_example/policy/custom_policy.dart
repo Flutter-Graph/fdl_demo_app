@@ -122,7 +122,7 @@ mixin CustomPolicy implements PolicySet {
 
   ComponentData _getComponentData(String type, Offset position) {
     var portComponent = ComponentData(
-      size: Size(120, 120),
+      size: const Size(120, 120),
       position: position,
       type: 'component',
       data: MyComponentData(
@@ -146,19 +146,19 @@ mixin CustomPolicy implements PolicySet {
         break;
       case 'one-two':
         portComponent.data.portData.add(_getPortData(Alignment.centerLeft));
-        portComponent.data.portData.add(_getPortData(Alignment(1, -0.5)));
-        portComponent.data.portData.add(_getPortData(Alignment(1, 0.5)));
+        portComponent.data.portData.add(_getPortData(const Alignment(1, -0.5)));
+        portComponent.data.portData.add(_getPortData(const Alignment(1, 0.5)));
         break;
       case 'two-one':
-        portComponent.data.portData.add(_getPortData(Alignment(-1, -0.5)));
-        portComponent.data.portData.add(_getPortData(Alignment(-1, 0.5)));
+        portComponent.data.portData.add(_getPortData(const Alignment(-1, -0.5)));
+        portComponent.data.portData.add(_getPortData(const Alignment(-1, 0.5)));
         portComponent.data.portData.add(_getPortData(Alignment.centerRight));
         break;
       case 'two-two':
-        portComponent.data.portData.add(_getPortData(Alignment(-1, -0.5)));
-        portComponent.data.portData.add(_getPortData(Alignment(-1, 0.5)));
-        portComponent.data.portData.add(_getPortData(Alignment(1, -0.5)));
-        portComponent.data.portData.add(_getPortData(Alignment(1, 0.5)));
+        portComponent.data.portData.add(_getPortData(const Alignment(-1, -0.5)));
+        portComponent.data.portData.add(_getPortData(const Alignment(-1, 0.5)));
+        portComponent.data.portData.add(_getPortData(const Alignment(1, -0.5)));
+        portComponent.data.portData.add(_getPortData(const Alignment(1, 0.5)));
         break;
       case 'corners':
         portComponent.data.portData.add(_getPortData(Alignment.topLeft));
@@ -182,7 +182,7 @@ mixin CustomPolicy implements PolicySet {
     var portData = PortData(
       type: portType,
       color: portColor,
-      size: Size(20, 20),
+      size: const Size(20, 20),
       alignmentOnComponent: alignment,
     );
     portData.setPortState(arePortsVisible ? PortState.shown : PortState.hidden);

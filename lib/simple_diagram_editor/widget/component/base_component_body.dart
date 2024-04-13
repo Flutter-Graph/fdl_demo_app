@@ -6,7 +6,7 @@ class BaseComponentBody extends StatelessWidget {
   final ComponentData componentData;
   final CustomPainter componentPainter;
 
-  const BaseComponentBody({
+  const BaseComponentBody({super.key, 
     required this.componentData,
     required this.componentPainter,
   });
@@ -19,7 +19,7 @@ class BaseComponentBody extends StatelessWidget {
       child: CustomPaint(
         painter: componentPainter,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 4),
+          padding: const EdgeInsets.symmetric(horizontal: 4),
           child: Align(
             alignment: customData.textAlignment,
             child: Text(

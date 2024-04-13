@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class BendRightBody extends StatelessWidget {
   final ComponentData componentData;
 
-  const BendRightBody({
+  const BendRightBody({super.key, 
     required this.componentData,
   });
 
@@ -26,7 +26,7 @@ class BendRightPainter extends CustomPainter {
   final Color color;
   final Color borderColor;
   final double borderWidth;
-  Size componentSize = Size(0, 0);
+  Size componentSize = const Size(0, 0);
 
   BendRightPainter({
     this.color = Colors.grey,

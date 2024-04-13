@@ -35,7 +35,7 @@ mixin MyComponentWidgetsPolicy implements ComponentWidgetsPolicy, CustomPolicy {
               selectedComponentId = null;
             },
           ),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           OptionIcon(
             color: Colors.grey.withOpacity(0.7),
             iconData: Icons.person_add,
@@ -46,7 +46,7 @@ mixin MyComponentWidgetsPolicy implements ComponentWidgetsPolicy, CustomPolicy {
               componentData.updateComponent();
             },
           ),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           OptionIcon(
             color: Colors.grey.withOpacity(0.7),
             iconData: Icons.person_remove,
@@ -78,7 +78,7 @@ mixin MyComponentWidgetsPolicy implements ComponentWidgetsPolicy, CustomPolicy {
             shape: BoxShape.rectangle,
             onPressed: () => canvasWriter.model.moveComponentToTheFront(componentData.id),
           ),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           OptionIcon(
             color: Colors.grey.withOpacity(0.7),
             iconData: Icons.arrow_downward,
@@ -87,7 +87,7 @@ mixin MyComponentWidgetsPolicy implements ComponentWidgetsPolicy, CustomPolicy {
             shape: BoxShape.rectangle,
             onPressed: () => canvasWriter.model.moveComponentToTheBack(componentData.id),
           ),
-          SizedBox(width: 40),
+          const SizedBox(width: 40),
         ],
       ),
     );
@@ -116,7 +116,7 @@ mixin MyComponentWidgetsPolicy implements ComponentWidgetsPolicy, CustomPolicy {
                 height: 8,
                 decoration: BoxDecoration(
                   color: Colors.black,
-                  border: Border.all(color: Color(0xFFEEEEEE)),
+                  border: Border.all(color: const Color(0xFFEEEEEE)),
                 ),
               ),
             ),
