@@ -58,8 +58,8 @@ class HomeScreen extends StatelessWidget {
                   backgroundColor: MaterialStateProperty.all(Colors.blue),
                 ),
                 child: const Text('library GitHub'),
-                onPressed: () {
-                  _launchUrl('https://github.com/Arokip/fdl');
+                onPressed: () async {
+                  await _launchUrl('https://github.com/Arokip/flutter_diagram_editor');
                 },
               ),
               const SizedBox(height: 8),
@@ -68,8 +68,8 @@ class HomeScreen extends StatelessWidget {
                   backgroundColor: MaterialStateProperty.all(Colors.blue),
                 ),
                 child: const Text('library'),
-                onPressed: () {
-                  _launchUrl('https://pub.dev/packages/diagram_editor');
+                onPressed: () async {
+                  await _launchUrl('https://pub.dev/packages/diagram_editor');
                 },
               ),
               const SizedBox(height: 40),
@@ -132,18 +132,6 @@ class HomeScreen extends StatelessWidget {
                 child: const Text('grid snapping example'),
                 onPressed: () {
                   Navigator.pushNamed(context, '/grid');
-                },
-              ),
-              const SizedBox(height: 40),
-              const Text('link to ETL app:'),
-              const SizedBox(height: 8),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.blue),
-                ),
-                child: const Text('ETL'),
-                onPressed: () {
-                  _launchUrl('https://arokip.github.io/etl_diagram_editor');
                 },
               ),
             ],

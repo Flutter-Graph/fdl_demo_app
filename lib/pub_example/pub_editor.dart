@@ -30,7 +30,7 @@ class PubDiagramEditorState extends State<PubDiagramEditor> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(0),
+                padding: const EdgeInsets.all(4),
                 child: Row(
                   children: [
                     ElevatedButton(
