@@ -10,14 +10,12 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomPolicy {
     hideComponentHighlight(selectedComponentId);
     canvasWriter.model.hideAllLinkJoints();
 
-    if (selectedComponentId == null) return;
-
     if (isReadyToAddParent) {
-      canvasWriter.model.setComponentParent(selectedComponentId!, componentId);
+      if (selectedComponentId != null) canvasWriter.model.setComponentParent(selectedComponentId!, componentId);
       selectedComponentId = null;
       isReadyToAddParent = false;
     } else {
-      bool connected = connectComponents(selectedComponentId!, componentId);
+      bool connected = connectComponents(selectedComponentId, componentId);
       if (connected) {
         selectedComponentId = null;
       } else {
@@ -42,10 +40,7 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomPolicy {
   }
 
   bool connectComponents(String? sourceComponentId, String? targetComponentId) {
-    if (sourceComponentId == null) {
-      return false;
-    }
-    if (targetComponentId == null) {
+    if (sourceComponentId == null || targetComponentId == null) {
       return false;
     }
     if (sourceComponentId == targetComponentId) {

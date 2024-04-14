@@ -66,8 +66,8 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomStatePolicy {
     lastFocalPoint = details.localFocalPoint;
   }
 
-  bool connectComponents(String? sourceComponentId, String targetComponentId) {
-    if (sourceComponentId == null) {
+  bool connectComponents(String? sourceComponentId, String? targetComponentId) {
+    if (sourceComponentId == null || targetComponentId == null) {
       return false;
     }
     if (sourceComponentId == targetComponentId) {

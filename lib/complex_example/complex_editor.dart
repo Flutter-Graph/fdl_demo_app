@@ -194,10 +194,7 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomPolicy {
   }
 
   bool connectComponents(String? sourceComponentId, String? targetComponentId) {
-    if (sourceComponentId == null) {
-      return false;
-    }
-    if (targetComponentId == null) {
+    if (sourceComponentId == null || targetComponentId == null) {
       return false;
     }
     if (sourceComponentId == targetComponentId) {
