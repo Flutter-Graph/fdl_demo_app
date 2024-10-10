@@ -1,12 +1,11 @@
 import 'package:diagram_editor/diagram_editor.dart';
-import 'package:diagram_editor_apps/simple_diagram_editor/policy/custom_policy.dart';
 import 'package:diagram_editor_apps/simple_diagram_editor/dialog/edit_link_dialog.dart';
+import 'package:diagram_editor_apps/simple_diagram_editor/policy/custom_policy.dart';
 import 'package:flutter/material.dart';
 
 mixin MyLinkWidgetsPolicy implements LinkWidgetsPolicy, CustomStatePolicy {
   @override
-  List<Widget> showWidgetsWithLinkData(
-      BuildContext context, LinkData linkData) {
+  List<Widget> showWidgetsWithLinkData(BuildContext context, LinkData linkData) {
     double linkLabelSize = 32;
     var linkStartLabelPosition = labelPosition(
       linkData.linkPoints.first,
@@ -54,9 +53,9 @@ mixin MyLinkWidgetsPolicy implements LinkWidgetsPolicy, CustomStatePolicy {
                 ),
                 width: 32,
                 height: 32,
-                child: Center(child: Icon(Icons.close, size: 20))),
+                child: const Center(child: Icon(Icons.close, size: 20))),
           ),
-          SizedBox(width: 8),
+          const SizedBox(width: 8),
           GestureDetector(
             onTap: () {
               showEditLinkDialog(
@@ -71,7 +70,7 @@ mixin MyLinkWidgetsPolicy implements LinkWidgetsPolicy, CustomStatePolicy {
                 ),
                 width: 32,
                 height: 32,
-                child: Center(child: Icon(Icons.edit, size: 20))),
+                child: const Center(child: Icon(Icons.edit, size: 20))),
           ),
         ],
       ),
@@ -84,16 +83,14 @@ mixin MyLinkWidgetsPolicy implements LinkWidgetsPolicy, CustomStatePolicy {
       top: position.dy,
       width: size * canvasReader.state.scale,
       height: size * canvasReader.state.scale,
-      child: Container(
-        child: GestureDetector(
-          onTap: () {},
-          onLongPress: () {},
-          child: Center(
-            child: Text(
-              label,
-              style: TextStyle(
-                fontSize: 10 * canvasReader.state.scale,
-              ),
+      child: GestureDetector(
+        onTap: () {},
+        onLongPress: () {},
+        child: Center(
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 10 * canvasReader.state.scale,
             ),
           ),
         ),
@@ -112,8 +109,7 @@ mixin MyLinkWidgetsPolicy implements LinkWidgetsPolicy, CustomStatePolicy {
     return canvasReader.state.toCanvasCoordinates(point1 -
         Offset(labelSize, labelSize) +
         normalized * labelSize +
-        VectorUtils.getPerpendicularVectorToVector(normalized, left) *
-            labelSize);
+        VectorUtils.getPerpendicularVectorToVector(normalized, left) * labelSize);
   }
 
   // @override

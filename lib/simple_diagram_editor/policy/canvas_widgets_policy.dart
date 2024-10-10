@@ -14,19 +14,16 @@ mixin MyCanvasWidgetsPolicy implements CanvasWidgetsPolicy, CustomStatePolicy {
           painter: GridPainter(
             offset: canvasReader.state.position / canvasReader.state.scale,
             scale: canvasReader.state.scale,
-            lineWidth: (canvasReader.state.scale < 1.0)
-                ? canvasReader.state.scale
-                : 1.0,
+            lineWidth: (canvasReader.state.scale < 1.0) ? canvasReader.state.scale : 1.0,
             matchParentSize: false,
-            lineColor: Colors.blue[900],
+            lineColor: const Color(0xFF0D47A1),
           ),
         ),
       ),
       DragTarget<ComponentData>(
-        builder: (_, __, ___) => null,
-        onWillAccept: (ComponentData data) => true,
-        onAcceptWithDetails: (DragTargetDetails<ComponentData> details) =>
-            _onAcceptWithDetails(details, context),
+        builder: (_, __, ___) => const SizedBox.shrink(),
+        onWillAcceptWithDetails: (DragTargetDetails<ComponentData> data) => true,
+        onAcceptWithDetails: (DragTargetDetails<ComponentData> details) => _onAcceptWithDetails(details, context),
       ),
     ];
   }
@@ -35,11 +32,11 @@ mixin MyCanvasWidgetsPolicy implements CanvasWidgetsPolicy, CustomStatePolicy {
     DragTargetDetails details,
     BuildContext context,
   ) {
-    final RenderBox renderBox = context.findRenderObject();
-    final Offset localOffset = renderBox.globalToLocal(details.offset);
+    final RenderObject? renderObject = context.findRenderObject();
+    if (renderObject == null || renderObject is! RenderBox) return;
+    final Offset localOffset = (renderObject).globalToLocal(details.offset);
     ComponentData componentData = details.data;
-    Offset componentPosition =
-        canvasReader.state.fromCanvasCoordinates(localOffset);
+    Offset componentPosition = canvasReader.state.fromCanvasCoordinates(localOffset);
     String componentId = canvasWriter.model.addComponent(
       ComponentData(
         position: componentPosition,

@@ -5,10 +5,9 @@ import 'package:flutter/material.dart';
 class RectBody extends StatelessWidget {
   final ComponentData componentData;
 
-  const RectBody({
-    Key key,
-    @required this.componentData,
-  }) : super(key: key);
+  const RectBody({super.key, 
+    required this.componentData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class RectPainter extends CustomPainter {
   final Color color;
   final Color borderColor;
   final double borderWidth;
-  Size componentSize;
+  Size componentSize = const Size(0, 0);
 
   RectPainter({
     this.color = Colors.grey,

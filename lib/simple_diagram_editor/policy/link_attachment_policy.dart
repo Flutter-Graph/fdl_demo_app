@@ -8,8 +8,7 @@ mixin MyLinkAttachmentPolicy implements LinkAttachmentPolicy {
     ComponentData componentData,
     Offset targetPoint,
   ) {
-    Offset pointPosition = targetPoint -
-        (componentData.position + componentData.size.center(Offset.zero));
+    Offset pointPosition = targetPoint - (componentData.position + componentData.size.center(Offset.zero));
     pointPosition = Offset(
       pointPosition.dx / componentData.size.width,
       pointPosition.dy / componentData.size.height,
@@ -18,27 +17,18 @@ mixin MyLinkAttachmentPolicy implements LinkAttachmentPolicy {
     switch (componentData.type) {
       case 'oval':
         Offset pointAlignment = pointPosition / pointPosition.distance;
-
         return Alignment(pointAlignment.dx, pointAlignment.dy);
-        break;
       case 'crystal':
-        Offset pointAlignment =
-            pointPosition / (pointPosition.dx.abs() + pointPosition.dy.abs());
-
+        Offset pointAlignment = pointPosition / (pointPosition.dx.abs() + pointPosition.dy.abs());
         return Alignment(pointAlignment.dx, pointAlignment.dy);
-        break;
-
       default:
         Offset pointAlignment;
         if (pointPosition.dx.abs() >= pointPosition.dy.abs()) {
-          pointAlignment = Offset(pointPosition.dx / pointPosition.dx.abs(),
-              pointPosition.dy / pointPosition.dx.abs());
+          pointAlignment = Offset(pointPosition.dx / pointPosition.dx.abs(), pointPosition.dy / pointPosition.dx.abs());
         } else {
-          pointAlignment = Offset(pointPosition.dx / pointPosition.dy.abs(),
-              pointPosition.dy / pointPosition.dy.abs());
+          pointAlignment = Offset(pointPosition.dx / pointPosition.dy.abs(), pointPosition.dy / pointPosition.dy.abs());
         }
         return Alignment(pointAlignment.dx, pointAlignment.dy);
-        break;
     }
   }
 }

@@ -13,10 +13,9 @@ mixin MyCanvasWidgetsPolicy implements CanvasWidgetsPolicy, CustomPolicy {
           verticalGap: gridGap,
           offset: canvasReader.state.position / canvasReader.state.scale,
           scale: canvasReader.state.scale,
-          lineWidth:
-              (canvasReader.state.scale < 1.0) ? canvasReader.state.scale : 1.0,
+          lineWidth: (canvasReader.state.scale < 1.0) ? canvasReader.state.scale : 1.0,
           matchParentSize: false,
-          lineColor: Colors.blue[900],
+          lineColor: const Color(0xFF0D47A1),
         ),
       ),
     ];

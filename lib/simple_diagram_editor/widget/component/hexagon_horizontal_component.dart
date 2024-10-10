@@ -5,10 +5,9 @@ import 'package:flutter/material.dart';
 class HexagonHorizontalBody extends StatelessWidget {
   final ComponentData componentData;
 
-  const HexagonHorizontalBody({
-    Key key,
-    this.componentData,
-  }) : super(key: key);
+  const HexagonHorizontalBody({super.key, 
+    required this.componentData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class HexagonHorizontalPainter extends CustomPainter {
   final Color color;
   final Color borderColor;
   final double borderWidth;
-  Size componentSize;
+  Size componentSize = const Size(0, 0);
 
   HexagonHorizontalPainter({
     this.color = Colors.grey,

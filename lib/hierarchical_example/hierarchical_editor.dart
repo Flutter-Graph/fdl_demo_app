@@ -3,12 +3,13 @@ import 'package:diagram_editor_apps/hierarchical_example/policy/policy_set.dart'
 import 'package:flutter/material.dart';
 
 class HierarchicalDiagramEditor extends StatefulWidget {
+  const HierarchicalDiagramEditor({super.key});
+
   @override
-  _HierarchicalDiagramEditorState createState() =>
-      _HierarchicalDiagramEditorState();
+  HierarchicalDiagramEditorState createState() => HierarchicalDiagramEditorState();
 }
 
-class _HierarchicalDiagramEditorState extends State<HierarchicalDiagramEditor> {
+class HierarchicalDiagramEditorState extends State<HierarchicalDiagramEditor> {
   MyPolicySet myPolicySet = MyPolicySet();
 
   @override
@@ -20,7 +21,7 @@ class _HierarchicalDiagramEditorState extends State<HierarchicalDiagramEditor> {
             children: [
               Container(color: Colors.grey),
               Padding(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: DiagramEditor(
                   diagramEditorContext: DiagramEditorContext(
                     policySet: myPolicySet,
@@ -33,7 +34,7 @@ class _HierarchicalDiagramEditorState extends State<HierarchicalDiagramEditor> {
                   width: 80,
                   height: 32,
                   color: Colors.red,
-                  child: Center(child: Text('delete all')),
+                  child: const Center(child: Text('delete all')),
                 ),
               ),
               Positioned(
@@ -43,7 +44,7 @@ class _HierarchicalDiagramEditorState extends State<HierarchicalDiagramEditor> {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
-                  child: Row(
+                  child: const Row(
                     children: [
                       Icon(Icons.arrow_back, size: 16),
                       SizedBox(width: 8),

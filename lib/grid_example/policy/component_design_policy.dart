@@ -5,6 +5,6 @@ import 'package:flutter/material.dart';
 mixin MyComponentDesignPolicy implements ComponentDesignPolicy {
   @override
   Widget showComponentBody(ComponentData componentData) {
-    return BasicComponent();
+    return const BasicComponent();
   }
 }

@@ -5,10 +5,9 @@ import 'package:flutter/material.dart';
 class OvalBody extends StatelessWidget {
   final ComponentData componentData;
 
-  const OvalBody({
-    Key key,
-    @required this.componentData,
-  }) : super(key: key);
+  const OvalBody({super.key, 
+    required this.componentData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class OvalPainter extends CustomPainter {
   final Color color;
   final Color borderColor;
   final double borderWidth;
-  Size componentSize;
+  Size componentSize = const Size(0, 0);
 
   OvalPainter({
     this.color = Colors.grey,

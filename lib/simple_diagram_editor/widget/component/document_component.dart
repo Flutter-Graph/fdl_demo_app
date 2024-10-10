@@ -5,10 +5,9 @@ import 'package:flutter/material.dart';
 class DocumentBody extends StatelessWidget {
   final ComponentData componentData;
 
-  const DocumentBody({
-    Key key,
-    this.componentData,
-  }) : super(key: key);
+  const DocumentBody({super.key, 
+    required this.componentData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class DocumentPainter extends CustomPainter {
   final Color color;
   final Color borderColor;
   final double borderWidth;
-  Size componentSize;
+  Size componentSize = const Size(0, 0);
 
   DocumentPainter({
     this.color = Colors.grey,

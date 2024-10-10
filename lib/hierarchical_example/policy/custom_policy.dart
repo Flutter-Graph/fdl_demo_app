@@ -1,7 +1,7 @@
 import 'package:diagram_editor/diagram_editor.dart';
 
 mixin CustomPolicy implements PolicySet {
-  String selectedComponentId;
+  String? selectedComponentId;
 
   bool isReadyToAddParent = false;
 
@@ -10,8 +10,8 @@ mixin CustomPolicy implements PolicySet {
     canvasReader.model.getComponent(componentId).updateComponent();
   }
 
-  hideComponentHighlight(String componentId) {
-    if (selectedComponentId != null) {
+  hideComponentHighlight(String? componentId) {
+    if (selectedComponentId != null && componentId != null) {
       canvasReader.model.getComponent(componentId).data.hideHighlight();
       canvasReader.model.getComponent(componentId).updateComponent();
     }

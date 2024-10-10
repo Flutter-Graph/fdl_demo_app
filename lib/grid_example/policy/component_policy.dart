@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 enum Movement { topLeft, topRight, bottomLeft, bottomRight }
 
 mixin MyComponentPolicy implements ComponentPolicy, CustomPolicy {
-  Offset startFocalPosition;
-  Offset startComponentPosition;
+  late Offset startFocalPosition;
+  late Offset startComponentPosition;
   Offset lastPositionChange = Offset.zero;
   Movement movement = Movement.topLeft;
 
@@ -18,16 +18,14 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomPolicy {
   @override
   onComponentScaleStart(componentId, details) {
     startFocalPosition = details.localFocalPoint;
-    startComponentPosition =
-        canvasReader.model.getComponent(componentId).position;
+    startComponentPosition = canvasReader.model.getComponent(componentId).position;
   }
 
   @override
   onComponentScaleUpdate(componentId, details) {
     Offset positionChange = details.localFocalPoint - startFocalPosition;
 
-    Offset newPosition =
-        startComponentPosition + (positionChange) / canvasReader.state.scale;
+    Offset newPosition = startComponentPosition + (positionChange) / canvasReader.state.scale;
 
     canvasWriter.model.setComponentPosition(componentId, newPosition);
     if (isSnappingEnabled) {
@@ -83,9 +81,7 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomPolicy {
           break;
         case Movement.topRight:
           if (isCloser(newPosition.dx, component.size.width)) {
-            finalPosX = newPosition.dx +
-                snapSize -
-                (newPosition.dx + component.size.width + snapSize) % gridGap;
+            finalPosX = newPosition.dx + snapSize - (newPosition.dx + component.size.width + snapSize) % gridGap;
           }
           if (isCloser(newPosition.dy)) {
             finalPosY = newPosition.dy - newPosition.dy % gridGap;
@@ -96,21 +92,15 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomPolicy {
             finalPosX = newPosition.dx - newPosition.dx % gridGap;
           }
           if (isCloser(newPosition.dy, component.size.height)) {
-            finalPosY = newPosition.dy +
-                snapSize -
-                (newPosition.dy + component.size.height + snapSize) % gridGap;
+            finalPosY = newPosition.dy + snapSize - (newPosition.dy + component.size.height + snapSize) % gridGap;
           }
           break;
         case Movement.bottomRight:
           if (isCloser(newPosition.dx, component.size.width)) {
-            finalPosX = newPosition.dx +
-                snapSize -
-                (newPosition.dx + component.size.width + snapSize) % gridGap;
+            finalPosX = newPosition.dx + snapSize - (newPosition.dx + component.size.width + snapSize) % gridGap;
           }
           if (isCloser(newPosition.dy, component.size.height)) {
-            finalPosY = newPosition.dy +
-                snapSize -
-                (newPosition.dy + component.size.height + snapSize) % gridGap;
+            finalPosY = newPosition.dy + snapSize - (newPosition.dy + component.size.height + snapSize) % gridGap;
           }
           break;
       }

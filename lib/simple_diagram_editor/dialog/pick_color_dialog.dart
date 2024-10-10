@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
-Future<Color> showPickColorDialog(
-    BuildContext context, Color oldColor, String title) async {
+Future<Color> showPickColorDialog(BuildContext context, Color oldColor, String title) async {
   Color currentColor = oldColor;
 
   await showDialog(
@@ -16,7 +15,6 @@ Future<Color> showPickColorDialog(
           child: ColorPicker(
             pickerColor: currentColor,
             onColorChanged: (color) => currentColor = color,
-            showLabel: true,
             pickerAreaHeightPercent: 0.8,
           ),
         ),

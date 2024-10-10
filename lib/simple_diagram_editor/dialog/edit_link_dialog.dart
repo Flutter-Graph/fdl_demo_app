@@ -27,10 +27,8 @@ void showEditLinkDialog(BuildContext context, LinkData linkData) {
   bool isColorEditShown = false;
   bool isLabelsEditShown = false;
 
-  final startLabelController =
-      TextEditingController(text: customData.startLabel ?? '');
-  final endLabelController =
-      TextEditingController(text: customData.endLabel ?? '');
+  final startLabelController = TextEditingController(text: customData.startLabel);
+  final endLabelController = TextEditingController(text: customData.endLabel);
 
   showDialog(
     barrierDismissible: false,
@@ -43,36 +41,31 @@ void showEditLinkDialog(BuildContext context, LinkData linkData) {
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(width: 600),
-                Text('Edit link style', style: TextStyle(fontSize: 20)),
-                SizedBox(height: 8),
+                const SizedBox(width: 600),
+                const Text('Edit link style', style: TextStyle(fontSize: 20)),
+                const SizedBox(height: 8),
                 ShowItem(
                     text: 'Line',
                     isShown: isLineEditShown,
-                    onTap: () =>
-                        setState(() => isLineEditShown = !isLineEditShown)),
+                    onTap: () => setState(() => isLineEditShown = !isLineEditShown)),
                 Visibility(
                   visible: isLineEditShown,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        child: DropdownButton<LineType>(
-                          value: lineTypeDropdown,
-                          onChanged: (LineType newValue) {
-                            setState(() {
-                              lineTypeDropdown = newValue;
-                            });
-                          },
-                          items: LineType.values.map((LineType lineType) {
-                            return DropdownMenuItem<LineType>(
-                              value: lineType,
-                              child: Text(lineType.toString()),
-                            );
-                          }).toList(),
-                        ),
+                      DropdownButton<LineType>(
+                        value: lineTypeDropdown,
+                        onChanged: (LineType? newValue) {
+                          if (newValue != null) setState(() => lineTypeDropdown = newValue);
+                        },
+                        items: LineType.values.map((LineType lineType) {
+                          return DropdownMenuItem<LineType>(
+                            value: lineType,
+                            child: Text(lineType.toString()),
+                          );
+                        }).toList(),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Row(
                         children: [
                           GestureDetector(
@@ -87,25 +80,22 @@ void showEditLinkDialog(BuildContext context, LinkData linkData) {
                               });
                             },
                             child: Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: Colors.blue,
                                   shape: BoxShape.circle,
                                 ),
                                 width: 32,
                                 height: 32,
-                                child: Center(
-                                    child: Icon(Icons.remove, size: 12))),
+                                child: const Center(child: Icon(Icons.remove, size: 12))),
                           ),
                           Column(
                             children: [
-                              Text(
-                                  '${double.parse(lineWidthPick.toStringAsFixed(1))}'),
+                              Text('${double.parse(lineWidthPick.toStringAsFixed(1))}'),
                               Slider(
                                 value: lineWidthPick,
                                 onChanged: (double newValue) {
                                   setState(() {
-                                    lineWidthPick = double.parse(
-                                        newValue.toStringAsFixed(1));
+                                    lineWidthPick = double.parse(newValue.toStringAsFixed(1));
                                   });
                                 },
                                 min: minLineWidth,
@@ -125,48 +115,42 @@ void showEditLinkDialog(BuildContext context, LinkData linkData) {
                               });
                             },
                             child: Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: Colors.blue,
                                   shape: BoxShape.circle,
                                 ),
                                 width: 32,
                                 height: 32,
-                                child:
-                                    Center(child: Icon(Icons.add, size: 12))),
+                                child: const Center(child: Icon(Icons.add, size: 12))),
                           ),
                         ],
                       ),
                     ],
                   ),
                 ),
-                Divider(color: Colors.black, height: 8, thickness: 1),
+                const Divider(color: Colors.black, height: 8, thickness: 1),
                 ShowItem(
                     text: 'Front arrow',
                     isShown: isFrontArrowEditShown,
-                    onTap: () => setState(
-                        () => isFrontArrowEditShown = !isFrontArrowEditShown)),
+                    onTap: () => setState(() => isFrontArrowEditShown = !isFrontArrowEditShown)),
                 Visibility(
                   visible: isFrontArrowEditShown,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        child: DropdownButton<ArrowType>(
-                          value: arrowTypeDropdown,
-                          onChanged: (ArrowType newValue) {
-                            setState(() {
-                              arrowTypeDropdown = newValue;
-                            });
-                          },
-                          items: ArrowType.values.map((ArrowType arrowType) {
-                            return DropdownMenuItem<ArrowType>(
-                              value: arrowType,
-                              child: Text('$arrowType'),
-                            );
-                          }).toList(),
-                        ),
+                      DropdownButton<ArrowType>(
+                        value: arrowTypeDropdown,
+                        onChanged: (ArrowType? newValue) {
+                          if (newValue != null) setState(() => arrowTypeDropdown = newValue);
+                        },
+                        items: ArrowType.values.map((ArrowType arrowType) {
+                          return DropdownMenuItem<ArrowType>(
+                            value: arrowType,
+                            child: Text('$arrowType'),
+                          );
+                        }).toList(),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Row(
                         children: [
                           GestureDetector(
@@ -181,25 +165,22 @@ void showEditLinkDialog(BuildContext context, LinkData linkData) {
                               });
                             },
                             child: Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: Colors.blue,
                                   shape: BoxShape.circle,
                                 ),
                                 width: 32,
                                 height: 32,
-                                child: Center(
-                                    child: Icon(Icons.remove, size: 12))),
+                                child: const Center(child: Icon(Icons.remove, size: 12))),
                           ),
                           Column(
                             children: [
-                              Text(
-                                  '${double.parse(arrowSizePick.toStringAsFixed(1))}'),
+                              Text('${double.parse(arrowSizePick.toStringAsFixed(1))}'),
                               Slider(
                                 value: arrowSizePick,
                                 onChanged: (double newValue) {
                                   setState(() {
-                                    arrowSizePick = double.parse(
-                                        newValue.toStringAsFixed(1));
+                                    arrowSizePick = double.parse(newValue.toStringAsFixed(1));
                                   });
                                 },
                                 min: minArrowSize,
@@ -219,48 +200,42 @@ void showEditLinkDialog(BuildContext context, LinkData linkData) {
                               });
                             },
                             child: Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: Colors.blue,
                                   shape: BoxShape.circle,
                                 ),
                                 width: 32,
                                 height: 32,
-                                child:
-                                    Center(child: Icon(Icons.add, size: 12))),
+                                child: const Center(child: Icon(Icons.add, size: 12))),
                           ),
                         ],
                       ),
                     ],
                   ),
                 ),
-                Divider(color: Colors.black, height: 8, thickness: 1),
+                const Divider(color: Colors.black, height: 8, thickness: 1),
                 ShowItem(
                     text: 'Back arrow',
                     isShown: isBackArrowEditShown,
-                    onTap: () => setState(
-                        () => isBackArrowEditShown = !isBackArrowEditShown)),
+                    onTap: () => setState(() => isBackArrowEditShown = !isBackArrowEditShown)),
                 Visibility(
                   visible: isBackArrowEditShown,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        child: DropdownButton<ArrowType>(
-                          value: backArrowTypeDropdown,
-                          onChanged: (ArrowType newValue) {
-                            setState(() {
-                              backArrowTypeDropdown = newValue;
-                            });
-                          },
-                          items: ArrowType.values.map((ArrowType arrowType) {
-                            return DropdownMenuItem<ArrowType>(
-                              value: arrowType,
-                              child: Text('$arrowType'),
-                            );
-                          }).toList(),
-                        ),
+                      DropdownButton<ArrowType>(
+                        value: backArrowTypeDropdown,
+                        onChanged: (ArrowType? newValue) {
+                          if (newValue != null) setState(() => backArrowTypeDropdown = newValue);
+                        },
+                        items: ArrowType.values.map((ArrowType arrowType) {
+                          return DropdownMenuItem<ArrowType>(
+                            value: arrowType,
+                            child: Text('$arrowType'),
+                          );
+                        }).toList(),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Row(
                         children: [
                           GestureDetector(
@@ -275,25 +250,22 @@ void showEditLinkDialog(BuildContext context, LinkData linkData) {
                               });
                             },
                             child: Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: Colors.blue,
                                   shape: BoxShape.circle,
                                 ),
                                 width: 32,
                                 height: 32,
-                                child: Center(
-                                    child: Icon(Icons.remove, size: 12))),
+                                child: const Center(child: Icon(Icons.remove, size: 12))),
                           ),
                           Column(
                             children: [
-                              Text(
-                                  '${double.parse(backArrowSizePick.toStringAsFixed(1))}'),
+                              Text('${double.parse(backArrowSizePick.toStringAsFixed(1))}'),
                               Slider(
                                 value: backArrowSizePick,
                                 onChanged: (double newValue) {
                                   setState(() {
-                                    backArrowSizePick = double.parse(
-                                        newValue.toStringAsFixed(1));
+                                    backArrowSizePick = double.parse(newValue.toStringAsFixed(1));
                                   });
                                 },
                                 min: minArrowSize,
@@ -313,38 +285,35 @@ void showEditLinkDialog(BuildContext context, LinkData linkData) {
                               });
                             },
                             child: Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: Colors.blue,
                                   shape: BoxShape.circle,
                                 ),
                                 width: 32,
                                 height: 32,
-                                child:
-                                    Center(child: Icon(Icons.add, size: 12))),
+                                child: const Center(child: Icon(Icons.add, size: 12))),
                           ),
                         ],
                       ),
                     ],
                   ),
                 ),
-                Divider(color: Colors.black, height: 8, thickness: 1),
+                const Divider(color: Colors.black, height: 8, thickness: 1),
                 ShowItem(
                     text: 'Link color',
                     isShown: isColorEditShown,
-                    onTap: () =>
-                        setState(() => isColorEditShown = !isColorEditShown)),
+                    onTap: () => setState(() => isColorEditShown = !isColorEditShown)),
                 Visibility(
                   visible: isColorEditShown,
                   child: Row(
                     children: [
-                      Text('Color:'),
-                      SizedBox(width: 16),
+                      const Text('Color:'),
+                      const SizedBox(width: 16),
                       GestureDetector(
                         onTap: () async {
                           var pickedColor =
                               // showPickColorDialog(context, linkData);
-                              showPickColorDialog(
-                                  context, color, 'Pick a line color');
+                              showPickColorDialog(context, color, 'Pick a line color');
                           color = await pickedColor;
                           setState(() {});
                         },
@@ -361,12 +330,11 @@ void showEditLinkDialog(BuildContext context, LinkData linkData) {
                     ],
                   ),
                 ),
-                Divider(color: Colors.black, height: 8, thickness: 1),
+                const Divider(color: Colors.black, height: 8, thickness: 1),
                 ShowItem(
                     text: 'Link labels',
                     isShown: isLabelsEditShown,
-                    onTap: () =>
-                        setState(() => isLabelsEditShown = !isLabelsEditShown)),
+                    onTap: () => setState(() => isLabelsEditShown = !isLabelsEditShown)),
                 Visibility(
                   visible: isLabelsEditShown,
                   child: Column(
@@ -375,7 +343,7 @@ void showEditLinkDialog(BuildContext context, LinkData linkData) {
                       TextField(
                         controller: startLabelController,
                         maxLines: 1,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Start label',
                           fillColor: Colors.white,
                           contentPadding: EdgeInsets.only(left: 13),
@@ -384,7 +352,7 @@ void showEditLinkDialog(BuildContext context, LinkData linkData) {
                       TextField(
                         controller: endLabelController,
                         maxLines: 1,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'End label',
                           fillColor: Colors.white,
                           contentPadding: EdgeInsets.only(left: 13),
@@ -401,7 +369,7 @@ void showEditLinkDialog(BuildContext context, LinkData linkData) {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('DISCARD'),
+                child: const Text('DISCARD'),
               ),
               TextButton(
                 onPressed: () {
@@ -417,7 +385,7 @@ void showEditLinkDialog(BuildContext context, LinkData linkData) {
                   linkData.updateLink();
                   Navigator.of(context).pop();
                 },
-                child: Text('SAVE'),
+                child: const Text('SAVE'),
               )
             ],
           );
@@ -432,8 +400,12 @@ class ShowItem extends StatelessWidget {
   final bool isShown;
   final Function onTap;
 
-  const ShowItem({Key key, this.text, this.isShown, this.onTap})
-      : super(key: key);
+  const ShowItem({
+    super.key,
+    required this.text,
+    required this.isShown,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {

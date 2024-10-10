@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 mixin MyInitPolicy implements InitPolicy {
   @override
   initializeDiagramEditor() {
-    canvasWriter.state.setCanvasColor(Colors.grey[300]);
+    canvasWriter.state.setCanvasColor(const Color(0xFFE0E0E0));
 
-    var cd1 = getSmallComponentData(Offset(220, 100));
-    var cd2 = getSmallComponentData(Offset(220, 180));
-    var cd3 = getSmallComponentData(Offset(400, 100));
-    var cd4 = getSmallComponentData(Offset(400, 180));
+    var cd1 = getSmallComponentData(const Offset(220, 100));
+    var cd2 = getSmallComponentData(const Offset(220, 180));
+    var cd3 = getSmallComponentData(const Offset(400, 100));
+    var cd4 = getSmallComponentData(const Offset(400, 180));
 
-    var cd5 = getBigComponentData(Offset(80, 80));
-    var cd6 = getBigComponentData(Offset(380, 80));
+    var cd5 = getBigComponentData(const Offset(80, 80));
+    var cd6 = getBigComponentData(const Offset(380, 80));
 
     canvasWriter.model.addComponent(cd1);
     canvasWriter.model.addComponent(cd2);
@@ -56,8 +56,8 @@ mixin MyInitPolicy implements InitPolicy {
 
   ComponentData getSmallComponentData(Offset position) {
     return ComponentData(
-      size: Size(80, 64),
-      minSize: Size(72, 48),
+      size: const Size(80, 64),
+      minSize: const Size(72, 48),
       position: position,
       data: MyComponentData(),
     );
@@ -65,8 +65,8 @@ mixin MyInitPolicy implements InitPolicy {
 
   ComponentData getBigComponentData(Offset position) {
     return ComponentData(
-      size: Size(240, 180),
-      minSize: Size(72, 48),
+      size: const Size(240, 180),
+      minSize: const Size(72, 48),
       position: position,
       data: MyComponentData(),
     );

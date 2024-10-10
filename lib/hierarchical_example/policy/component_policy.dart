@@ -3,7 +3,7 @@ import 'package:diagram_editor_apps/hierarchical_example/policy/custom_policy.da
 import 'package:flutter/material.dart';
 
 mixin MyComponentPolicy implements ComponentPolicy, CustomPolicy {
-  Offset lastFocalPoint;
+  late Offset lastFocalPoint;
 
   @override
   onComponentTap(String componentId) {
@@ -11,7 +11,7 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomPolicy {
     canvasWriter.model.hideAllLinkJoints();
 
     if (isReadyToAddParent) {
-      canvasWriter.model.setComponentParent(selectedComponentId, componentId);
+      if (selectedComponentId != null) canvasWriter.model.setComponentParent(selectedComponentId!, componentId);
       selectedComponentId = null;
       isReadyToAddParent = false;
     } else {
@@ -39,18 +39,18 @@ mixin MyComponentPolicy implements ComponentPolicy, CustomPolicy {
     lastFocalPoint = details.localFocalPoint;
   }
 
-  bool connectComponents(String sourceComponentId, String targetComponentId) {
-    if (sourceComponentId == null) {
+  bool connectComponents(String? sourceComponentId, String? targetComponentId) {
+    if (sourceComponentId == null || targetComponentId == null) {
       return false;
     }
     if (sourceComponentId == targetComponentId) {
       return false;
     }
     // test if the connection between two components already exists (one way)
-    if (canvasReader.model.getComponent(sourceComponentId).connections.any(
-        (connection) =>
-            (connection is ConnectionOut) &&
-            (connection.otherComponentId == targetComponentId))) {
+    if (canvasReader.model
+        .getComponent(sourceComponentId)
+        .connections
+        .any((connection) => (connection is ConnectionOut) && (connection.otherComponentId == targetComponentId))) {
       return false;
     }
 

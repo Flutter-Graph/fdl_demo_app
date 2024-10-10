@@ -5,10 +5,9 @@ import 'package:flutter/material.dart';
 class BeanRightBody extends StatelessWidget {
   final ComponentData componentData;
 
-  const BeanRightBody({
-    Key key,
-    this.componentData,
-  }) : super(key: key);
+  const BeanRightBody({super.key, 
+    required this.componentData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class BeanRightPainter extends CustomPainter {
   final Color color;
   final Color borderColor;
   final double borderWidth;
-  Size componentSize;
+  Size componentSize = const Size(0, 0);
 
   BeanRightPainter({
     this.color = Colors.grey,

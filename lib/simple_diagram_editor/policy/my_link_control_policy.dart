@@ -9,22 +9,19 @@ mixin MyLinkControlPolicy implements LinkPolicy, CustomStatePolicy {
     canvasWriter.model.hideAllLinkJoints();
     canvasWriter.model.showLinkJoints(linkId);
 
-    showLinkOption(linkId,
-        canvasReader.state.fromCanvasCoordinates(details.localPosition));
+    showLinkOption(linkId, canvasReader.state.fromCanvasCoordinates(details.localPosition));
   }
 
-  var segmentIndex;
+  int? segmentIndex;
 
   @override
   onLinkScaleStart(String linkId, ScaleStartDetails details) {
     hideLinkOption();
     canvasWriter.model.hideAllLinkJoints();
     canvasWriter.model.showLinkJoints(linkId);
-    segmentIndex = canvasReader.model
-        .determineLinkSegmentIndex(linkId, details.localFocalPoint);
+    segmentIndex = canvasReader.model.determineLinkSegmentIndex(linkId, details.localFocalPoint);
     if (segmentIndex != null) {
-      canvasWriter.model
-          .insertLinkMiddlePoint(linkId, details.localFocalPoint, segmentIndex);
+      canvasWriter.model.insertLinkMiddlePoint(linkId, details.localFocalPoint, segmentIndex!);
       canvasWriter.model.updateLink(linkId);
     }
   }
@@ -32,8 +29,7 @@ mixin MyLinkControlPolicy implements LinkPolicy, CustomStatePolicy {
   @override
   onLinkScaleUpdate(String linkId, ScaleUpdateDetails details) {
     if (segmentIndex != null) {
-      canvasWriter.model.setLinkMiddlePointPosition(
-          linkId, details.localFocalPoint, segmentIndex);
+      canvasWriter.model.setLinkMiddlePointPosition(linkId, details.localFocalPoint, segmentIndex!);
       canvasWriter.model.updateLink(linkId);
     }
   }
@@ -43,11 +39,9 @@ mixin MyLinkControlPolicy implements LinkPolicy, CustomStatePolicy {
     hideLinkOption();
     canvasWriter.model.hideAllLinkJoints();
     canvasWriter.model.showLinkJoints(linkId);
-    segmentIndex = canvasReader.model
-        .determineLinkSegmentIndex(linkId, details.localPosition);
+    segmentIndex = canvasReader.model.determineLinkSegmentIndex(linkId, details.localPosition);
     if (segmentIndex != null) {
-      canvasWriter.model
-          .insertLinkMiddlePoint(linkId, details.localPosition, segmentIndex);
+      canvasWriter.model.insertLinkMiddlePoint(linkId, details.localPosition, segmentIndex!);
       canvasWriter.model.updateLink(linkId);
     }
   }
@@ -55,8 +49,7 @@ mixin MyLinkControlPolicy implements LinkPolicy, CustomStatePolicy {
   @override
   onLinkLongPressMoveUpdate(String linkId, LongPressMoveUpdateDetails details) {
     if (segmentIndex != null) {
-      canvasWriter.model.setLinkMiddlePointPosition(
-          linkId, details.localPosition, segmentIndex);
+      canvasWriter.model.setLinkMiddlePointPosition(linkId, details.localPosition, segmentIndex!);
       canvasWriter.model.updateLink(linkId);
     }
   }

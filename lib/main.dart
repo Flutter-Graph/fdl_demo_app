@@ -7,9 +7,11 @@ import 'package:diagram_editor_apps/simple_diagram_editor/widget/editor.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,24 +20,26 @@ class MyApp extends StatelessWidget {
       title: 'Diagram editor',
       initialRoute: '/',
       routes: {
-        '/': (context) => HomeScreen(),
-        '/editor': (context) => SimpleDemo(),
-        '/pub_example': (context) => PubDemo(),
-        '/ports': (context) => PortDemo(),
-        '/hierarchical': (context) => HierarchicalDemo(),
-        '/complex': (context) => ComplexDemo(),
-        '/grid': (context) => GridDemo(),
+        '/': (context) => const HomeScreen(),
+        '/editor': (context) => const SimpleDemo(),
+        '/pub_example': (context) => const PubDemo(),
+        '/ports': (context) => const PortDemo(),
+        '/hierarchical': (context) => const HierarchicalDemo(),
+        '/complex': (context) => const ComplexDemo(),
+        '/grid': (context) => const GridDemo(),
       },
     );
   }
 }
 
 class HomeScreen extends StatelessWidget {
-  _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
+  const HomeScreen({super.key});
+
+  Future<void> _launchUrl(String urlString) async {
+    final url = Uri.tryParse(urlString);
+    if (url == null) return;
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
     }
   }
 
@@ -47,99 +51,87 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Examples of usage of Flutter diagram_editor library.'),
-              SizedBox(height: 16),
+              const Text('Examples of usage of Flutter diagram_editor library.'),
+              const SizedBox(height: 16),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.blue),
                 ),
-                child: Text('library GitHub'),
-                onPressed: () {
-                  _launchURL('https://github.com/Arokip/fdl');
+                child: const Text('library GitHub'),
+                onPressed: () async {
+                  await _launchUrl('https://github.com/Arokip/flutter_diagram_editor');
                 },
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.blue),
                 ),
-                child: Text('library'),
-                onPressed: () {
-                  _launchURL('https://pub.dev/packages/diagram_editor');
+                child: const Text('library'),
+                onPressed: () async {
+                  await _launchUrl('https://pub.dev/packages/diagram_editor');
                 },
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.blue),
                 ),
-                child: Text('Simple editor'),
+                child: const Text('Simple editor'),
                 onPressed: () {
                   Navigator.pushNamed(context, '/editor');
                 },
               ),
-              SizedBox(height: 40),
-              Text('More examples:'),
-              SizedBox(height: 8),
+              const SizedBox(height: 40),
+              const Text('More examples:'),
+              const SizedBox(height: 8),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.blue),
                 ),
-                child: Text('pub.dev example'),
+                child: const Text('pub.dev example'),
                 onPressed: () {
                   Navigator.pushNamed(context, '/pub_example');
                 },
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.blue),
                 ),
-                child: Text('port example'),
+                child: const Text('port example'),
                 onPressed: () {
                   Navigator.pushNamed(context, '/ports');
                 },
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.blue),
                 ),
-                child: Text('hierarchical components example'),
+                child: const Text('hierarchical components example'),
                 onPressed: () {
                   Navigator.pushNamed(context, '/hierarchical');
                 },
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.blue),
                 ),
-                child: Text('complex widget components'),
+                child: const Text('complex widget components'),
                 onPressed: () {
                   Navigator.pushNamed(context, '/complex');
                 },
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.blue),
                 ),
-                child: Text('grid snapping example'),
+                child: const Text('grid snapping example'),
                 onPressed: () {
                   Navigator.pushNamed(context, '/grid');
-                },
-              ),
-              SizedBox(height: 40),
-              Text('link to ETL app:'),
-              SizedBox(height: 8),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.blue),
-                ),
-                child: Text('ETL'),
-                onPressed: () {
-                  _launchURL('https://arokip.github.io/etl_diagram_editor');
                 },
               ),
             ],
@@ -151,9 +143,11 @@ class HomeScreen extends StatelessWidget {
 }
 
 class SimpleDemo extends StatelessWidget {
+  const SimpleDemo({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Scaffold(
         body: SimpleDemoEditor(),
       ),
@@ -162,9 +156,11 @@ class SimpleDemo extends StatelessWidget {
 }
 
 class PubDemo extends StatelessWidget {
+  const PubDemo({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Scaffold(
         body: PubDiagramEditor(),
       ),
@@ -173,9 +169,11 @@ class PubDemo extends StatelessWidget {
 }
 
 class PortDemo extends StatelessWidget {
+  const PortDemo({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Scaffold(
         body: PortsDiagramEditor(),
       ),
@@ -184,9 +182,11 @@ class PortDemo extends StatelessWidget {
 }
 
 class HierarchicalDemo extends StatelessWidget {
+  const HierarchicalDemo({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Scaffold(
         body: HierarchicalDiagramEditor(),
       ),
@@ -195,9 +195,11 @@ class HierarchicalDemo extends StatelessWidget {
 }
 
 class ComplexDemo extends StatelessWidget {
+  const ComplexDemo({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Scaffold(
         body: ComplexDiagramEditor(),
       ),
@@ -206,9 +208,11 @@ class ComplexDemo extends StatelessWidget {
 }
 
 class GridDemo extends StatelessWidget {
+  const GridDemo({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Scaffold(
         body: GridDiagramEditor(),
       ),

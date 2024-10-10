@@ -1,4 +1,4 @@
-import 'package:diagram_editor/src/abstraction_layer/policy/base/link_joints_policy.dart';
+import 'package:diagram_editor/diagram_editor.dart';
 import 'package:diagram_editor_apps/simple_diagram_editor/policy/custom_policy.dart';
 import 'package:flutter/material.dart';
 
@@ -12,10 +12,8 @@ mixin MyLinkJointControlPolicy implements LinkJointPolicy, CustomStatePolicy {
   }
 
   @override
-  onLinkJointScaleUpdate(
-      int jointIndex, String linkId, ScaleUpdateDetails details) {
-    canvasWriter.model.setLinkMiddlePointPosition(
-        linkId, details.localFocalPoint, jointIndex);
+  onLinkJointScaleUpdate(int jointIndex, String linkId, ScaleUpdateDetails details) {
+    canvasWriter.model.setLinkMiddlePointPosition(linkId, details.localFocalPoint, jointIndex);
     canvasWriter.model.updateLink(linkId);
 
     hideLinkOption();

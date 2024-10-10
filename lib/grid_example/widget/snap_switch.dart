@@ -4,13 +4,16 @@ import 'package:flutter/material.dart';
 class SpanSwitch extends StatefulWidget {
   final MyPolicySet policySet;
 
-  const SpanSwitch({Key key, this.policySet}) : super(key: key);
+  const SpanSwitch({
+    super.key,
+    required this.policySet,
+  });
 
   @override
-  _SpanSwitchState createState() => _SpanSwitchState();
+  SpanSwitchState createState() => SpanSwitchState();
 }
 
-class _SpanSwitchState extends State<SpanSwitch> {
+class SpanSwitchState extends State<SpanSwitch> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -26,9 +29,7 @@ class _SpanSwitchState extends State<SpanSwitch> {
           height: 32,
           color: Colors.amber,
           child: Center(
-              child: Text(widget.policySet.isSnappingEnabled
-                  ? 'grid snapping ENABLED'
-                  : 'grid snapping DISABLED')),
+              child: Text(widget.policySet.isSnappingEnabled ? 'grid snapping ENABLED' : 'grid snapping DISABLED')),
         ),
       ),
     );
